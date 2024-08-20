@@ -35,6 +35,12 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  # 添加  url_launcher 插件：用于启动 URL 的 Flutter 插件。支持 Web、电话、SMS 和电子邮件方案。
+  url_launcher: ^6.1.8
+  # 用于处理英语单词的实用程序。计算音节，生成发音良好的单词组合，并提供按用法排名前 5000 位的英语单词的访问。
+  english_words: ^4.0.0
+  # 用于生成随机句子和段落（类似于“lorem ipsum”生成器）
+  flutter_lorem: ^2.0.0
 
 dev_dependencies:
   flutter_test:
