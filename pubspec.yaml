@@ -1,5 +1,5 @@
-name: zt_sample
-description: A new Flutter project.
+name: zt_flutter_sample_v2
+description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.2 <4.0.0'
+  sdk: ^3.8.1
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -31,16 +31,26 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # https://pub.dev/packages/flukit 是一个Flutter Widget库。
+  flukit: ^3.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.8
   # 添加  url_launcher 插件：用于启动 URL 的 Flutter 插件。支持 Web、电话、SMS 和电子邮件方案。
   url_launcher: ^6.1.8
   # 用于处理英语单词的实用程序。计算音节，生成发音良好的单词组合，并提供按用法排名前 5000 位的英语单词的访问。
   english_words: ^4.0.0
   # 用于生成随机句子和段落（类似于“lorem ipsum”生成器）
   flutter_lorem: ^2.0.0
+
+  image_picker: ^0.8.2
+  camera: ^0.11.2
+  video_player: ^2.10.0
+  path_provider: ^2.1.5
+  web_socket_channel: ^3.0.3
+  webview_flutter: ^4.13.0
+  camera_android_camerax: ^0.6.19
 
 dev_dependencies:
   flutter_test:
@@ -51,7 +61,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -70,10 +80,10 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
+  # https://flutter.dev/to/resolution-aware-images
 
   # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
+  # https://flutter.dev/to/asset-from-package
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
@@ -93,4 +103,4 @@ flutter:
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+  # see https://flutter.dev/to/font-from-package
