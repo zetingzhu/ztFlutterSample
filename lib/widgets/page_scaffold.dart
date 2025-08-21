@@ -50,22 +50,16 @@ class _PageScaffoldState extends State<PageScaffold> {
               });
             },
             icon: const Icon(Icons.print),
-          )
+          ),
         ],
       ),
-      body: VerticalLogPanel(
-        showLogPanel: _showLog,
-        child: wBody(),
-      ),
+      body: VerticalLogPanel(showLogPanel: _showLog, child: wBody()),
     );
   }
 
   wBody() {
     return widget.padding
-        ? Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: widget.body,
-          )
+        ? Padding(padding: const EdgeInsets.all(16.0), child: widget.body)
         : widget.body;
   }
 }
@@ -120,10 +114,7 @@ class Page {
 }
 
 class ListPage extends StatelessWidget {
-  const ListPage({
-    Key? key,
-    required this.children,
-  }) : super(key: key);
+  const ListPage({Key? key, required this.children}) : super(key: key);
 
   final List<Page> children;
 

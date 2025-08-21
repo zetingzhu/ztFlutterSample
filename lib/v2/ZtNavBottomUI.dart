@@ -61,7 +61,7 @@ List<Widget> barWithBadgeDestinations(int selectedIndex, Function(int) onTap) {
     NavigationDestination(
       tooltip: '',
       icon: Badge.count(count: 1000, child: const Icon(Icons.mail_outlined)),
-      label: 'Mail',
+      label: 'Main',
       selectedIcon: Badge.count(count: 1000, child: const Icon(Icons.mail)),
     ),
     const NavigationDestination(

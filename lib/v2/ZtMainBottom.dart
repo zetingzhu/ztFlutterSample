@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zt_flutter_sample_v2/main.dart';
 import 'package:zt_flutter_sample_v2/v2/TPage5.dart';
 import 'package:zt_flutter_sample_v2/v2/ZtNavBottomUI.dart';
 
@@ -42,7 +43,7 @@ class _HomeState extends State<ZMyApp> with SingleTickerProviderStateMixin {
   // 根据选中的屏幕索引创建对应的屏幕
   Widget createScreenFor(ScreenSelected screenSelected) =>
       switch (screenSelected) {
-        ScreenSelected.main => const TPage1(),
+        ScreenSelected.main => const MyHomePage(),
         ScreenSelected.chat => const TPage2(),
         ScreenSelected.rooms => const TPage3(),
         ScreenSelected.meet => const TPage4(),
