@@ -29,7 +29,7 @@ class _FocusTestRouteState extends State<FocusTestRoute> {
           ),
           TextField(
             focusNode: focusNode2, //关联focusNode2
-            decoration: const InputDecoration(labelText: "input2"),
+            // decoration: const InputDecoration(labelText: "input2"),
           ),
           Builder(
             builder: (ctx) {
@@ -64,6 +64,20 @@ class _FocusTestRouteState extends State<FocusTestRoute> {
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.red),
+              ),
+            ),
+          ),
+
+          TextField(
+            autofocus: true,
+            style: const TextStyle(fontSize: 30.0, color: Colors.red),
+            decoration: InputDecoration(
+              hintText: "用户名或邮箱",
+              contentPadding: const EdgeInsets.only(
+                left: 20.0,
+                top: 20.0,
+                right: 20.0,
+                bottom: 20.0,
               ),
             ),
           ),

@@ -70,7 +70,7 @@ class Page {
     Widget child, {
     this.withScaffold = true,
     this.padding = true,
-    this.showLog = true,
+    this.showLog = false,
   }) : builder = ((_) => child);
 
   Page.builder(
@@ -78,7 +78,7 @@ class Page {
     this.builder, {
     this.withScaffold = true,
     this.padding = true,
-    this.showLog = true,
+    this.showLog = false,
   });
 
   String title;
@@ -103,10 +103,7 @@ class Page {
           } else if (showLog) {
             widget = VerticalLogPanel(child: widget);
           }
-          return LogListenerScope(
-            child: widget,
-            logEmitter: logEmitter,
-          );
+          return LogListenerScope(child: widget, logEmitter: logEmitter);
         },
       ),
     );

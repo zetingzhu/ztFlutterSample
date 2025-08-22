@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zt_flutter_sample_v2/chapter2/cupertino_route.dart';
 import 'package:zt_flutter_sample_v2/chapter2/state.dart';
 
 class TPage2 extends StatelessWidget {
@@ -11,11 +12,19 @@ class TPage2 extends StatelessWidget {
     return ListView(
       children: <Widget>[
         mItem(context, 'State 各种状态研究', const CounterWidget(initValue: 10)),
+        ListTile(
+          title: Text('命名路由'),
+          onTap: () => Navigator.pushNamed(context, "new_page"),
+        ),
+        ListTile(
+          title: Text('命名路由,带上参数'),
+          onTap: () =>
+              Navigator.pushNamed(context, "new_routes", arguments: "hi"),
+        ),
       ],
     );
   }
 }
-
 
 Widget mItem(BuildContext context, String str, Widget page) {
   return ListTile(

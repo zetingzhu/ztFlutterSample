@@ -28,10 +28,7 @@ class _TextRouteState extends State<TextRoute> {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          const Text(
-            "Hello world",
-            textAlign: TextAlign.center,
-          ),
+          const Text("Hello world", textAlign: TextAlign.center),
           Text(
             "Hello world! I'm Jack. " * 4,
             maxLines: 1,
@@ -39,38 +36,39 @@ class _TextRouteState extends State<TextRoute> {
           ),
           const Text(
             "Hello world",
-            textScaleFactor: 1.5,
+            textScaler: TextScaler.linear(1.9), // 1.2 倍缩放
           ),
           Text(
-            "Hello world " * 6, //字符串重复六次
-            textAlign: TextAlign.center,
+            "6 Hello world " * 6, //字符串重复六次
+            textAlign: TextAlign.left,
           ),
           Text(
             "Hello world",
             style: TextStyle(
-                color: Colors.blue,
-                fontSize: 18.0,
-                height: 1.2,
-                fontFamily: "Courier",
-                background: Paint()..color = Colors.yellow,
-                decoration: TextDecoration.underline,
-                decorationStyle: TextDecorationStyle.dashed),
+              color: Colors.blue,
+              fontSize: 18.0,
+              height: 4.0,
+              fontFamily: "Courier",
+              background: Paint()..color = Colors.yellow,
+              decoration: TextDecoration.underline,
+              decorationStyle: TextDecorationStyle.dashed,
+            ),
           ),
           Text.rich(
-            TextSpan(children: [
-              const TextSpan(text: "Home: "),
-              TextSpan(
+            TextSpan(
+              children: [
+                const TextSpan(text: "Home: "),
+                TextSpan(
                   text: "https://flutterchina.club",
                   style: const TextStyle(color: Colors.blue),
-                  recognizer: _tapRecognizer),
-            ]),
+                  recognizer: _tapRecognizer,
+                ),
+              ],
+            ),
           ),
           DefaultTextStyle(
             //1.设置文本默认样式
-            style: const TextStyle(
-              color: Colors.red,
-              fontSize: 20.0,
-            ),
+            style: const TextStyle(color: Colors.red, fontSize: 20.0),
             textAlign: TextAlign.start,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,6 +80,28 @@ class _TextRouteState extends State<TextRoute> {
                   style: TextStyle(
                     inherit: false, //2.不继承默认样式
                     color: Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          RichText(
+            text: TextSpan(
+              children: [
+                const TextSpan(
+                  text: '点击',
+                  style: TextStyle(color: Colors.black),
+                ),
+                WidgetSpan(
+                  child: Image.asset('imgs/noise_aware.png', width: 20),
+                  // 内嵌图片
+                  alignment: PlaceholderAlignment.middle, // 图片对齐方式
+                ),
+                const TextSpan(
+                  text: '图标查看详情',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
                   ),
                 ),
               ],

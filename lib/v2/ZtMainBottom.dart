@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:zt_flutter_sample_v2/main.dart';
+import 'package:zt_flutter_sample_v2/HomePage.dart';
+import 'package:zt_flutter_sample_v2/chapter2/2.4/NewRoutes.dart';
 import 'package:zt_flutter_sample_v2/v2/TPage5.dart';
 import 'package:zt_flutter_sample_v2/v2/ZtNavBottomUI.dart';
+import 'dart:developer';
 
 import 'TPage1.dart';
 import 'TPage2.dart';
@@ -52,6 +54,10 @@ class _HomeState extends State<ZMyApp> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // debugger(when: true, message: "debugger 打印日志");
+    // print(" print 打印日志");
+    // debugPrint( 'debugPrint 打印日志');
+
     return MaterialApp(
       // 是否显示右上角debug标志
       debugShowCheckedModeBanner: true,
@@ -71,6 +77,21 @@ class _HomeState extends State<ZMyApp> with SingleTickerProviderStateMixin {
           selectedIndex: screenIndex,
         ),
       ),
+      //注册路由表
+      routes: {
+        "new_page": (context) => NewRouter(),
+        "new_routes": (context) => NewRouter(),
+      },
+
+      // onGenerateRoute: (RouteSettings settings) {
+      //   return MaterialPageRoute(
+      //     builder: (context) {
+      //       String routeName = settings.name;
+      //       // 如果访问的路由页需要登录，但当前未登录，则直接返回登录页路由，
+      //       // 引导用户登录；其他情况则正常打开路由。
+      //     },
+      //   );
+      // },
     );
   }
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart' hide Page;
+import 'package:zt_flutter_sample_v2/chapter2/2.3/TapboxA.dart';
+import 'package:zt_flutter_sample_v2/chapter2/2.3/TapboxB.dart';
+import 'package:zt_flutter_sample_v2/chapter2/2.3/TapboxC.dart';
 import 'routes.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -39,8 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
               Page(
                 "Cupertino Demo",
                 const CupertinoTestRoute(),
-                withScaffold: false,
+                withScaffold: true,
               ),
+              Page("2.3 Widget管理自身状态", TapboxA()),
+              Page("2.3 父Widget管理子Widget的状态", ParentWidget()),
+              Page("2.3 混合状态管理", ParentWidgetC()),
             ]),
           ),
           ExpansionTile(

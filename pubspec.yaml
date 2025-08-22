@@ -78,6 +78,15 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+  assets:
+    - imgs/ # 自动包含该目录所有文件
+    - assets/stackoverflow_light.css
+    - assets/stackoverflow_dark.css
+    - assets/neat.js
+    - assets/highlight.js
+    - assets/marked.js
+    - assets/test.md
+    - assets/sliver_flexible_header.dart
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
