@@ -52,6 +52,9 @@ dependencies:
   webview_flutter: ^4.13.0
   camera_android_camerax: ^0.6.19
 
+  # https://pub.dev/packages/fluttertoast toast 第三方库
+  fluttertoast: ^8.2.12
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -86,7 +89,6 @@ flutter:
     - assets/highlight.js
     - assets/marked.js
     - assets/test.md
-    - assets/sliver_flexible_header.dart
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

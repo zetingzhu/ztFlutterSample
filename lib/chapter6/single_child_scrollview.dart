@@ -5,7 +5,8 @@ class SingleChildScrollViewTestRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String str = "ABCD" * 20;
+    String str =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/" * 2;
     return Scrollbar(
       // 显示进度条
       child: SingleChildScrollView(
@@ -16,10 +17,7 @@ class SingleChildScrollViewTestRoute extends StatelessWidget {
             children: str
                 .split("")
                 //每一个字母都用一个Text显示,字体大小为原来的两倍
-                .map((c) => Text(
-                      c,
-                      textScaleFactor: 2.0,
-                    ))
+                .map((c) => Text(c, textScaler: TextScaler.linear(2.0)))
                 .toList(),
           ),
         ),

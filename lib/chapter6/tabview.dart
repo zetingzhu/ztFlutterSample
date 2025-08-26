@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart' hide Page;
 import '../common.dart';
+import '../widgets/index.dart';
 
 class TabViewRoute extends StatelessWidget {
   const TabViewRoute({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListPage(children: [
-      Page('TabBarView', const TabViewRoute1(), withScaffold: false),
-      Page('DefaultTabController', const TabViewRoute2(), withScaffold: false),
-    ]);
+    return ListPage(
+      children: [
+        Page('TabBarView', const TabViewRoute1(), withScaffold: false),
+        Page(
+          'DefaultTabController',
+          const TabViewRoute2(),
+          withScaffold: false,
+        ),
+      ],
+    );
   }
 }
 
@@ -23,7 +30,7 @@ class TabViewRoute1 extends StatefulWidget {
 class _TabViewRoute1State extends State<TabViewRoute1>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  List tabs = ["新闻", "历史", "图片"];
+  List tabs = ["新闻", "历史历史", "图片"];
 
   @override
   void initState() {
@@ -39,6 +46,12 @@ class _TabViewRoute1State extends State<TabViewRoute1>
         bottom: TabBar(
           controller: _tabController,
           tabs: tabs.map((e) => Tab(text: e)).toList(),
+          // 使用自定义指示器，固定长度
+          indicator: CustomTabIndicator(
+            width: 80, // 固定宽度为40
+            color: Colors.red,
+            height: 3.0,
+          ),
         ),
       ),
       body: TabBarView(
@@ -69,15 +82,13 @@ class TabViewRoute2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List tabs = ["新闻", "历史", "图片"];
+    List tabs = ["新闻", "历史", "图片图片"];
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
         appBar: AppBar(
           title: const Text("App Name"),
-          bottom: TabBar(
-            tabs: tabs.map((e) => Tab(text: e)).toList(),
-          ),
+          bottom: TabBar(tabs: tabs.map((e) => Tab(text: e)).toList()),
         ),
         body: TabBarView(
           //构建

@@ -2,34 +2,36 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'extra_info_constraints.dart';
 
-typedef SliverPersistentHeaderToBoxBuilder = Widget Function(
-  BuildContext context,
-  double maxExtent,
-  bool fixed,
-);
+typedef SliverPersistentHeaderToBoxBuilder =
+    Widget Function(
+      BuildContext context,
+      double maxExtent, //当前可用最大高度
+      bool fixed, // 是否已经固定
+    );
 
 class SliverPersistentHeaderToBox extends StatelessWidget {
-  SliverPersistentHeaderToBox({
-    Key? key,
-    required Widget child,
-  })  : builder = ((a, b, c) => child),
-        super(key: key);
+  // 默认构造函数，直接接受一个 widget，不用显式指定高度
+  SliverPersistentHeaderToBox({Key? key, required Widget child})
+    : builder = ((a, b, c) => child),
+      super(key: key);
 
-  SliverPersistentHeaderToBox.builder({
-    Key? key,
-    required this.builder,
-  }) : super(key: key);
+  // builder 构造函数，需要传一个 builder，同样不需要显式指定高度
+  SliverPersistentHeaderToBox.builder({Key? key, required this.builder})
+    : super(key: key);
 
   final SliverPersistentHeaderToBoxBuilder builder;
 
   @override
   Widget build(BuildContext context) {
     return _SliverPersistentHeaderToBox(
+      // 通过 LayoutBuilder接收 Sliver 传递给子组件的布局约束信息
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           return builder(
             context,
             constraints.maxHeight,
+
+            //约束中需要传递的额外信息是一个bool类型，表示 Sliver 是否已经固定到顶部
             (constraints as ExtraInfoBoxConstraints<bool>).extra,
           );
         },
@@ -39,10 +41,7 @@ class SliverPersistentHeaderToBox extends StatelessWidget {
 }
 
 class _SliverPersistentHeaderToBox extends SingleChildRenderObjectWidget {
-  const _SliverPersistentHeaderToBox({
-    Key? key,
-    Widget? child,
-  }) : super(key: key, child: child);
+  const _SliverPersistentHeaderToBox({super.key, super.child});
 
   @override
   RenderObject createRenderObject(BuildContext context) {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:flutter_lorem/flutter_lorem.dart';
 
 class InfiniteListView extends StatefulWidget {
-  const InfiniteListView({Key? key}) : super(key: key);
+  const InfiniteListView({super.key});
 
   @override
   _InfiniteListViewState createState() => _InfiniteListViewState();
@@ -45,9 +46,7 @@ class _InfiniteListViewState extends State<InfiniteListView> {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(16.0),
               child: const Text(
-                "没有更多了",
-                style: TextStyle(color: Colors.grey),
-              ),
+                  "没有更多了", style: TextStyle(color: Colors.grey)),
             );
           }
         }
@@ -61,12 +60,23 @@ class _InfiniteListViewState extends State<InfiniteListView> {
   void _retrieveData() {
     Future.delayed(const Duration(seconds: 2)).then((e) {
       setState(() {
+        final result = generateWordPairs()
+            .take(20)
+            .toList() // 先转换为 List
+            .asMap() // 转换为 Map<int, WordPair> (索引:值)
+            .map(
+              (index, wordPair) =>
+              MapEntry(
+                index,
+                '$index.${wordPair.asPascalCase}',
+              ),
+        )
+            .values // 获取所有值
+            .toList();
+        final insIndex = _words.length - 1;
+        print("随机生成之前数据： ${insIndex}") ;
         //重新构建列表
-        _words.insertAll(
-          _words.length - 1,
-          //每次生成20个单词
-          generateWordPairs().take(20).map((e) => e.asPascalCase).toList(),
-        );
+        _words.insertAll(insIndex, result);
       });
     });
   }

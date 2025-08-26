@@ -13,13 +13,11 @@ class TableRoute extends StatelessWidget {
           children: [
             TableRow(
               decoration: BoxDecoration(color: Colors.grey[200]),
-              children: _addPadding(
-                [
-                  const Text("姓名"),
-                  const Text("性别"),
-                  const Text("备注"),
-                ],
-              ),
+              children: _addPadding([
+                const Text("姓名"),
+                const Text("性别"),
+                const Text("备注"),
+              ]),
             ),
             TableRow(
               children: _addPadding([
@@ -37,29 +35,24 @@ class TableRoute extends StatelessWidget {
             ),
           ],
         ),
+        Divider(height: 0.0, color: Colors.red),
+        Divider(height: 30.0, color: Colors.blue), // 设置高度为30，上下各有15的间距
+        Divider(height: 0.0, color: Colors.deepPurple),
+
         DataTable(
           sortColumnIndex: 0,
           sortAscending: true,
           rows: const <DataRow>[
-            DataRow(
-              cells: [
-                DataCell(Text("1")),
-                DataCell(Text("28.5")),
-              ],
-            ),
-            DataRow(
-              cells: [
-                DataCell(Text("2")),
-                DataCell(Text("27.5")),
-              ],
-            ),
+            DataRow(cells: [DataCell(Text("1")), DataCell(Text("28.5"))]),
+            DataRow(cells: [DataCell(Text("2")), DataCell(Text("27.5"))]),
           ],
           columns: <DataColumn>[
             DataColumn(
-                label: const Text("Id"),
-                numeric: true,
-                onSort: (a, b) => print("$a $b")),
-            const DataColumn(label: Text("价格￥"), numeric: true)
+              label: const Text("Id"),
+              numeric: true,
+              onSort: (a, b) => print("$a $b"),
+            ),
+            const DataColumn(label: Text("价格￥"), numeric: true),
           ],
         ),
       ],
@@ -68,10 +61,7 @@ class TableRoute extends StatelessWidget {
 
   _addPadding(List<Widget> w) {
     return w
-        .map((e) => Padding(
-              padding: const EdgeInsets.all(6),
-              child: e,
-            ))
+        .map((e) => Padding(padding: const EdgeInsets.all(6), child: e))
         .toList();
   }
 }

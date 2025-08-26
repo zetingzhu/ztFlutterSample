@@ -10,10 +10,7 @@ class CenterColumnRoute extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
-        children: const <Widget>[
-          Text("hi"),
-          Text("world"),
-        ],
+        children: const <Widget>[Text("hi"), Text("world")],
       ),
     );
   }

@@ -6,10 +6,16 @@ class PersistentHeaderRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListPage(children: [
-      Page('SliverPersistentHeader示例1', wSample1(), padding: false),
-      Page('SliverPersistentHeader示例2', wSample2(context), withScaffold: false),
-    ]);
+    return ListPage(
+      children: [
+        Page('SliverPersistentHeader示例1', wSample1(), padding: false),
+        Page(
+          'SliverPersistentHeader示例2',
+          wSample2(context),
+          withScaffold: false,
+        ),
+      ],
+    );
   }
 
   Widget wSample1() {
@@ -44,14 +50,19 @@ class PersistentHeaderRoute extends StatelessWidget {
         top: true,
         bottom: false,
         child: ColoredBox(
-          color: Colors.white,
+          color: Colors.grey,
           child: CustomScrollView(
             slivers: [
               SliverPersistentHeader(
                 floating: true,
+                // 当用户再次向下滑动时，此时不管 header 已经被滑出了多远，它都会立即出现在可视区域顶部并固定住
                 delegate: SliverHeaderDelegate.fixedHeight(
                   height: 50,
-                  child: const TextField(),
+                  child: Container(
+                    color: Colors.green,
+                    alignment: Alignment.centerLeft,
+                    child: Text("最顶部的"),
+                  ),
                 ),
               ),
               MediaQuery.removePadding(

@@ -15,3 +15,4 @@ export 'after_layout.dart';
 export 'event_bus.dart';
 export 'hit_test_blocker.dart';
 export 'code_highlight.dart';
+export 'custom_tab_indicator.dart';

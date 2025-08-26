@@ -9,8 +9,9 @@ class AfterLayoutRoute extends StatefulWidget {
 }
 
 class _AfterLayoutRouteState extends State<AfterLayoutRoute> {
-  String _text = 'flutter 实战 ';
+  String _text = 'flutter 实战 ,';
   Size _size = Size.zero;
+  Offset mOffset = Offset.zero;
 
   @override
   Widget build(BuildContext context) {
@@ -36,26 +37,45 @@ class _AfterLayoutRouteState extends State<AfterLayoutRoute> {
           callback: (RenderAfterLayout ral) {
             print('Text2： ${ral.size}, ${ral.offset}');
           },
-          child: const Text('Text2：flutter@wendux'),
+          child: const Text('Text2：flutter@wendux....'),
         ),
-        Builder(builder: (context) {
-          return Container(
-            color: Colors.grey.shade200,
-            alignment: Alignment.center,
-            width: 100,
-            height: 100,
-            child: AfterLayout(
-              callback: (RenderAfterLayout ral) {
-                Offset offset = ral.localToGlobal(
-                  Offset.zero,
-                  ancestor: context.findRenderObject(),
-                );
-                print('A 在 Container 中占用的空间范围为：${offset & ral.size}');
-              },
-              child: const Text('A'),
-            ),
-          );
-        }),
+        Builder(
+          builder: (context) {
+            return Container(
+              color: Colors.grey.shade200,
+              alignment: Alignment.center,
+              width: 100,
+              height: 100,
+              child: AfterLayout(
+                callback: (RenderAfterLayout ral) {
+                  Offset offset = ral.localToGlobal(
+                    Offset.zero,
+                    ancestor: context.findRenderObject(),
+                  );
+                  print('A 在 Container 中占用的空间范围为：${offset & ral.size} context:${context}');
+                },
+                child: const Text('A'),
+              ),
+            );
+          },
+        ),
+        const Divider(),
+        Container(
+          color: Colors.grey.shade200,
+          alignment: Alignment.center,
+          width: 100,
+          height: 100,
+          child: AfterLayout(
+            callback: (RenderAfterLayout ral) {
+              Offset offset = ral.localToGlobal(
+                Offset.zero,
+                ancestor: context.findRenderObject(),
+              );
+              print('B 在 Container 中占用的空间范围为：${offset & ral.size}  context:${context}');
+            },
+            child: const Text('B'),
+          ),
+        ),
         const Divider(),
         AfterLayout(
           child: Text(_text),
@@ -63,20 +83,21 @@ class _AfterLayoutRouteState extends State<AfterLayoutRoute> {
             setState(() {
               //更新尺寸信息
               _size = value.size;
+              mOffset = value.offset;
             });
           },
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
-            'Text size: $_size ',
+            'Text size: $_size  ${mOffset}',
             style: const TextStyle(color: Colors.blue),
           ),
         ),
         ElevatedButton(
           onPressed: () {
             setState(() {
-              _text += 'flutter 实战 ';
+              _text += 'flutter 实战 -';
             });
           },
           child: const Text('追加字符串'),

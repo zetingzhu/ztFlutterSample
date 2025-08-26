@@ -41,36 +41,12 @@ class WrapAndFlowRoute extends StatelessWidget {
     return Flow(
       delegate: TestFlowDelegate(margin: const EdgeInsets.all(10.0)),
       children: <Widget>[
-        Container(
-          width: 80.0,
-          height: 80.0,
-          color: Colors.red,
-        ),
-        Container(
-          width: 80.0,
-          height: 80.0,
-          color: Colors.green,
-        ),
-        Container(
-          width: 80.0,
-          height: 80.0,
-          color: Colors.blue,
-        ),
-        Container(
-          width: 80.0,
-          height: 80.0,
-          color: Colors.yellow,
-        ),
-        Container(
-          width: 80.0,
-          height: 80.0,
-          color: Colors.brown,
-        ),
-        Container(
-          width: 80.0,
-          height: 80.0,
-          color: Colors.purple,
-        ),
+        Container(width: 80.0, height: 80.0, color: Colors.red),
+        Container(width: 80.0, height: 80.0, color: Colors.green),
+        Container(width: 80.0, height: 80.0, color: Colors.blue),
+        Container(width: 80.0, height: 80.0, color: Colors.yellow),
+        Container(width: 80.0, height: 80.0, color: Colors.brown),
+        Container(width: 80.0, height: 80.0, color: Colors.purple),
       ],
     );
   }

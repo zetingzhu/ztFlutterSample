@@ -15,11 +15,13 @@ class _SliverFlexibleHeaderRouteState extends State<SliverFlexibleHeaderRoute> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      //为了能使CustomScrollView拉到顶部时还能继续往下拉，必须让 physics 支持弹性效果
       physics:
           const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       slivers: [
+        //我们需要实现的 SliverFlexibleHeader 组件
         SliverFlexibleHeader(
-          visibleExtent: _initHeight,
+          visibleExtent: _initHeight, // 初始状态在列表中占用的布局高度
           builder: (context, availableHeight, direction) {
             return GestureDetector(
               onTap: () => print('tap'),

@@ -6,13 +6,33 @@ class NestedScrollViewRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListPage(children: [
-      Page('嵌套 ListView', const NestedListView(), withScaffold: false),
-      Page('Snap 效果的AppBar(bug版)', const SnapAppBarWithBug(), withScaffold: false),
-      Page('Snap 效果的AppBar（无bug）', const SnapAppBar2(), withScaffold: false),
-      Page('嵌套 TabBarView', const NestedTabBarView1(), withScaffold: false),
-      Page('复杂的嵌套 TabBarView', const NestedTabBarView2(), withScaffold: false),
-    ]);
+    return ListPage(
+      children: [
+        Page('嵌套 ListView', const NestedListView(), withScaffold: false),
+        Page(
+          'Snap 效果的AppBar(bug版)',
+          const SnapAppBarWithBug(),
+          withScaffold: false,
+        ),
+        Page('Snap 效果的AppBar（无bug）', const SnapAppBar2(), withScaffold: false),
+        Page(
+          '嵌套 TabBarView 0 ',
+          const NestedTabBarView0(),
+          withScaffold: false,
+        ),
+        Page('嵌套 TabBarView', const NestedTabBarView1(), withScaffold: false),
+        Page(
+          '复杂的嵌套 TabBarView',
+          const NestedTabBarView2(),
+          withScaffold: false,
+        ),
+        Page(
+          '复杂的嵌套 TabBarView ，我需要的样式',
+          const NestedTabBarView3(),
+          withScaffold: false,
+        ),
+      ],
+    );
   }
 }
 
@@ -64,20 +84,17 @@ class SnapAppBarWithBug extends StatelessWidget {
               snap: true,
               expandedHeight: 200,
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset(
-                  "./imgs/sea.png",
-                  fit: BoxFit.cover,
-                ),
+                background: Image.asset("./imgs/sea.png", fit: BoxFit.cover),
               ),
               forceElevated: innerBoxIsScrolled,
-            )
+            ),
           ];
         },
-        body: Builder(builder: (BuildContext context) {
-          return CustomScrollView(
-            slivers: <Widget>[buildSliverList(100)],
-          );
-        }),
+        body: Builder(
+          builder: (BuildContext context) {
+            return CustomScrollView(slivers: <Widget>[buildSliverList(100)]);
+          },
+        ),
       ),
     );
   }
@@ -115,24 +132,23 @@ class _SnapAppBar2State extends State<SnapAppBar2> {
                 // pinned: true,  // 放开注释，然后看日志
                 expandedHeight: 200,
                 flexibleSpace: FlexibleSpaceBar(
-                  background: Image.asset(
-                    "./imgs/sea.png",
-                    fit: BoxFit.cover,
-                  ),
+                  background: Image.asset("./imgs/sea.png", fit: BoxFit.cover),
                 ),
                 forceElevated: innerBoxIsScrolled,
               ),
             ),
           ];
         },
-        body: LayoutBuilder(builder: (BuildContext context, cons) {
-          return CustomScrollView(
-            slivers: <Widget>[
-              SliverOverlapInjector(handle: handle),
-              buildSliverList(100)
-            ],
-          );
-        }),
+        body: LayoutBuilder(
+          builder: (BuildContext context, cons) {
+            return CustomScrollView(
+              slivers: <Widget>[
+                SliverOverlapInjector(handle: handle),
+                buildSliverList(100),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -142,6 +158,64 @@ class _SnapAppBar2State extends State<SnapAppBar2> {
     // 移除监听器
     handle.removeListener(onOverlapChanged);
     super.dispose();
+  }
+}
+
+class NestedTabBarView0 extends StatelessWidget {
+  const NestedTabBarView0({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final _tabs = <String>['猜你喜欢', '今日特价', '发现更多'];
+    // 构建 tabBar
+    return DefaultTabController(
+      length: _tabs.length, // This is the number of tabs.
+      child: Scaffold(
+        body: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverOverlapAbsorber(
+                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                  context,
+                ),
+                sliver: SliverAppBar(
+                  title: const Text('商城'),
+                  // floating: true,
+                  // snap: true,
+                  pinned: true,
+                  forceElevated: true,
+                  bottom: TabBar(
+                    tabs: _tabs.map((String name) => Tab(text: name)).toList(),
+                  ),
+                ),
+              ),
+            ];
+          },
+          body: TabBarView(
+            children: _tabs.map((String name) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return CustomScrollView(
+                    key: PageStorageKey<String>(name),
+                    slivers: <Widget>[
+                      SliverOverlapInjector(
+                        handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                          context,
+                        ),
+                      ),
+                      SliverPadding(
+                        padding: const EdgeInsets.all(8.0),
+                        sliver: buildSliverList(50),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }).toList(),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -172,7 +246,6 @@ class NestedTabBarView1 extends StatelessWidget {
               //     ),
               //   ),
               // ),
-
               SliverAppBar(
                 title: const Text('商城'),
                 // floating: true,
@@ -227,36 +300,42 @@ class NestedTabBarView2 extends StatelessWidget {
           body: NestedScrollView(
             headerSliverBuilder:
                 (BuildContext context, bool innerBoxIsScrolled) {
-              return <Widget>[
-                const SliverAppBar(
-                  title: Text('Floating Nested SliverAppBar'),
-                  pinned: true,
-                  elevation: 0,
-                  //forceElevated: innerBoxIsScrolled,
-                ),
-                buildSliverList(5),
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: SliverHeaderDelegate.builder(
-                    maxHeight: 56,
-                    minHeight: 56,
-                    builder: (BuildContext context, double shrinkOffset,
-                        bool overlapsContent) {
-                      return Material(
-                        child: Container(
-                          color: overlapsContent
-                              ? Colors.white
-                              : Theme.of(context).canvasColor,
-                          child: buildTabBar(_tabs),
-                        ),
-                        elevation: overlapsContent ? 4 : 0,
-                        shadowColor: Theme.of(context).appBarTheme.shadowColor,
-                      );
-                    },
-                  ),
-                ),
-              ];
-            },
+                  return <Widget>[
+                    const SliverAppBar(
+                      title: Text('Floating Nested SliverAppBar'),
+                      pinned: true,
+                      elevation: 0,
+                      //forceElevated: innerBoxIsScrolled,
+                    ),
+                    buildSliverList(5),
+                    SliverPersistentHeader(
+                      pinned: true,
+                      delegate: SliverHeaderDelegate.builder(
+                        maxHeight: 56,
+                        minHeight: 56,
+                        builder:
+                            (
+                              BuildContext context,
+                              double shrinkOffset,
+                              bool overlapsContent,
+                            ) {
+                              return Material(
+                                child: Container(
+                                  color: overlapsContent
+                                      ? Colors.white
+                                      : Theme.of(context).canvasColor,
+                                  child: buildTabBar(_tabs),
+                                ),
+                                elevation: overlapsContent ? 4 : 0,
+                                shadowColor: Theme.of(
+                                  context,
+                                ).appBarTheme.shadowColor,
+                              );
+                            },
+                      ),
+                    ),
+                  ];
+                },
             body: TabBarView(
               children: _tabs.map((String name) {
                 return Builder(
@@ -290,6 +369,83 @@ class NestedTabBarView2 extends StatelessWidget {
         borderSide: BorderSide(width: 2.0, color: Colors.blue),
         insets: EdgeInsets.only(bottom: 10),
       ),
+      tabs: tabs.map((String name) => Tab(text: name)).toList(),
+    );
+  }
+}
+
+class NestedTabBarView3 extends StatelessWidget {
+  const NestedTabBarView3({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final _tabs = <String>['猜你喜欢', '今日特价', '发现更多'];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text("来一个我需要的样式")),
+      body: DefaultTabController(
+        length: _tabs.length, // This is the number of tabs.
+        child: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              //  顶部信息
+              buildSliverList(5),
+              // 固定信息
+              SliverPersistentHeader(
+                pinned: true,
+                delegate: SliverHeaderDelegate.builder(
+                  maxHeight: 56,
+                  minHeight: 56,
+                  builder:
+                      (
+                        BuildContext context,
+                        double shrinkOffset,
+                        bool overlapsContent,
+                      ) {
+                        return DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.greenAccent.shade100,
+                          ),
+                          child: buildTabBar(_tabs),
+                        );
+                      },
+                ),
+              ),
+            ];
+          },
+          body: TabBarView(
+            children: _tabs.map((String name) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return CustomScrollView(
+                    key: PageStorageKey<String>(name),
+                    physics: const ClampingScrollPhysics(),
+                    slivers: <Widget>[
+                      SliverPadding(
+                        padding: const EdgeInsets.all(8.0),
+                        sliver: buildSliverList(30),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }).toList(),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildTabBar(List<String> tabs) {
+    return TabBar(
+      dividerColor: Colors.transparent,
+      labelColor: Colors.red,
+      unselectedLabelColor: Colors.black,
+      indicatorSize: TabBarIndicatorSize.label,
+      // indicator: const UnderlineTabIndicator(
+      //   borderSide: BorderSide(width: 2.0, color: Colors.blue),
+      //   insets: EdgeInsets.only(bottom: 10),
+      // ),
       tabs: tabs.map((String name) => Tab(text: name)).toList(),
     );
   }

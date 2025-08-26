@@ -7,61 +7,66 @@ class ClipRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     // 头像
     Image avatar = Image.asset("imgs/avatar.png", width: 60.0);
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        avatar, //不剪裁
-        ClipOval(child: avatar), //剪裁为圆形
-        ClipRRect(
-          //剪裁为圆角矩形
-          borderRadius: BorderRadius.circular(5.0),
-          child: avatar,
-        ),
-        ClipPath(
-          child: avatar,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Align(
-              alignment: Alignment.topLeft,
-              widthFactor: .5, //宽度设为原来宽度一半，另一半会溢出,但会显示
-              child: avatar,
-            ),
-            const Text(
-              "你好世界",
-              style: TextStyle(color: Colors.green),
-            )
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ClipRect(
-              //将溢出部分剪裁
-              child: Align(
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          avatar, //不剪裁
+          ClipOval(child: avatar), //剪裁为圆形
+          ClipRRect(
+            //剪裁为圆角矩形
+            borderRadius: BorderRadius.circular(5.0),
+            child: avatar,
+          ),
+          ClipPath(child: avatar),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Align(
                 alignment: Alignment.topLeft,
-                widthFactor: .5, //宽度设为原来宽度一半
+                widthFactor: .5, //宽度设为原来宽度一半，另一半会溢出,但会显示
                 child: avatar,
               ),
+              const Text("你好世界", style: TextStyle(color: Colors.green)),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ClipRect(
+                //将溢出部分剪裁
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  widthFactor: .5, //宽度设为原来宽度一半
+                  child: avatar,
+                ),
+              ),
+              const Text("你好世界", style: TextStyle(color: Colors.green)),
+            ],
+          ),
+          Divider(height: 0, color: Colors.blue),
+          DecoratedBox(
+            decoration: const BoxDecoration(color: Colors.red),
+            child: ClipRect(
+              clipper: MyClipper(), //使用自定义的clipper
+              child: avatar,
             ),
-            const Text("你好世界", style: TextStyle(color: Colors.green))
-          ],
-        ),
-        DecoratedBox(
-          decoration: const BoxDecoration(color: Colors.red),
-          child: ClipRect(
-            clipper: MyClipper(), //使用自定义的clipper
-            child: avatar,
           ),
-        ),
-        DecoratedBox(
-          decoration: const BoxDecoration(color: Colors.red),
-          child: MyClipRect(
-            child: avatar,
+          Divider(height: 0, color: Colors.blue),
+          DecoratedBox(
+            decoration: const BoxDecoration(color: Colors.red),
+            child: MyClipRect(child: avatar),
           ),
-        )
-      ],
+          Divider(height: 0, color: Colors.blue),
+        ],
+        // .map(
+        //   (e) => Padding(
+        //     padding: const EdgeInsets.only(top: 10.0),
+        //     child: e,
+        //   ),
+        // )
+        // .toList(),
+      ),
     );
   }
 }
@@ -75,10 +80,7 @@ class MyClipper extends CustomClipper<Rect> {
 }
 
 class MyClipRect extends StatelessWidget {
-  const MyClipRect({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
+  const MyClipRect({Key? key, required this.child}) : super(key: key);
 
   final Widget child;
 

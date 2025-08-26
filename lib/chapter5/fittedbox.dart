@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class FittedBoxRoute extends StatelessWidget {
   const FittedBoxRoute({Key? key}) : super(key: key);
 
@@ -11,12 +10,18 @@ class FittedBoxRoute extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 30.0),
-          child: Row(children: [Text('xx'*30)]),
+          child: Row(children: [Text('xx' * 30)]),
         ),
-        // wContainer(BoxFit.none),
-        // Text('Wendux'),
-        // wContainer(BoxFit.contain),
-        // Text('Flutter中国'),
+        Center(
+          child: Column(
+            children: [
+              wContainer(BoxFit.none),
+              Text('Wendux'),
+              wContainer(BoxFit.contain),
+              Text('Flutter中国'),
+            ],
+          ),
+        ),
         ...wRows(),
       ],
     );
@@ -30,7 +35,7 @@ class FittedBoxRoute extends StatelessWidget {
         color: Colors.red,
         child: FittedBox(
           fit: boxFit,
-          child: Container(width: 60, height: 70, color: Colors.blue),
+          child: Container(width: 60, height: 80, color: Colors.blue),
         ),
       ),
     );
@@ -38,17 +43,21 @@ class FittedBoxRoute extends StatelessWidget {
 
   List<Widget> wRows() {
     return [
-      wRow(' 90000000000000000 '),
-      SingleLineFittedBox(child: wRow(' 90000000000000000 ')),
-      wRow(' 800 '),
-      SingleLineFittedBox(child: wRow(' 800 ')),
-      // LayoutLogPrint(tag: 1, child: wRow(' 800 ')),
-      // SingleLineFittedBox(child: LayoutLogPrint(tag: 2, child: wRow(' 800 '))),
-    ]
-        .map((e) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: e,
-            ))
+          wRow(' 90000000000000000 '),
+          wRow1(' 90000000000000111 '),
+          wRow2(' 90000000000000222 '),
+          SingleLineFittedBox(child: wRow(' 90000000000000000 ')),
+          wRow(' 800 '),
+          SingleLineFittedBox(child: wRow(' 800 ')),
+          // LayoutLogPrint(tag: 1, child: wRow(' 800 ')),
+          // SingleLineFittedBox(child: LayoutLogPrint(tag: 2, child: wRow(' 800 '))),
+        ]
+        .map(
+          (e) => Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: e,
+          ),
+        )
         .toList();
   }
 
@@ -62,24 +71,21 @@ class FittedBoxRoute extends StatelessWidget {
   }
 
   Widget wRow1(String text) {
-    Widget child = Text(text);
-    child = Row(
+    Widget mChild = Text(text);
+    mChild = Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [child, child, child],
+      children: [mChild, mChild, mChild],
     );
     return LayoutBuilder(
       builder: (_, constraints) {
         print(constraints);
-        // return FittedBox(
-        //   child: child,
-        // );
         return FittedBox(
           child: ConstrainedBox(
             constraints: constraints.copyWith(
               minWidth: constraints.maxWidth,
               maxWidth: double.infinity,
             ),
-            child: child,
+            child: mChild,
           ),
         );
       },
@@ -87,9 +93,19 @@ class FittedBoxRoute extends StatelessWidget {
   }
 }
 
+Widget wRow2(String text) {
+  Widget mChild = Text(text);
+  mChild = Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [mChild, mChild, mChild],
+  );
+  return FittedBox(child: mChild);
+}
+
 class SingleLineFittedBox extends StatelessWidget {
-  const SingleLineFittedBox({Key? key,this.child}) : super(key: key);
- final Widget? child;
+  const SingleLineFittedBox({super.key, this.child});
+
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -109,4 +125,3 @@ class SingleLineFittedBox extends StatelessWidget {
     );
   }
 }
-

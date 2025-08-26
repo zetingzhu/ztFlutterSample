@@ -23,13 +23,15 @@ class _ScaffoldRouteState extends State<ScaffoldRoute>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text("App Name"),
         actions: <Widget>[
           IconButton(icon: const Icon(Icons.share), onPressed: () {}),
         ],
         bottom: TabBar(
-            controller: _tabController,
-            tabs: tabs.map((e) => Tab(text: e)).toList()),
+          controller: _tabController,
+          tabs: tabs.map((e) => Tab(text: e)).toList(),
+        ),
       ),
       drawer: const MyDrawer(),
       body: TabBarView(
@@ -46,33 +48,29 @@ class _ScaffoldRouteState extends State<ScaffoldRoute>
         shape: const CircularNotchedRectangle(),
         child: Row(
           children: [
-            IconButton(
-              icon: const Icon(Icons.home),
-              onPressed: () {},
-            ),
+            IconButton(icon: const Icon(Icons.home), onPressed: () {}),
             const SizedBox(),
-            IconButton(
-              icon: const Icon(Icons.business),
-              onPressed: () {},
-            ),
+            IconButton(icon: const Icon(Icons.business), onPressed: () {}),
           ],
           mainAxisAlignment: MainAxisAlignment.spaceAround,
         ),
       ),
-//      bottomNavigationBar: BottomNavigationBar(
-//        items: <BottomNavigationBarItem>[
-//          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
-//          BottomNavigationBarItem(
-//              icon: Icon(Icons.business), title: Text('Business')),
-//          BottomNavigationBarItem(
-//              icon: Icon(Icons.school), title: Text('School')),
-//        ],
-//        currentIndex: _selectedIndex,
-//        fixedColor: Colors.blue,
-//        onTap: _onItemTapped,
-//      ),
-      floatingActionButton:
-          FloatingActionButton(child: const Icon(Icons.add), onPressed: _onAdd),
+      //      bottomNavigationBar: BottomNavigationBar(
+      //        items: <BottomNavigationBarItem>[
+      //          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+      //          BottomNavigationBarItem(
+      //              icon: Icon(Icons.business), title: Text('Business')),
+      //          BottomNavigationBarItem(
+      //              icon: Icon(Icons.school), title: Text('School')),
+      //        ],
+      //        currentIndex: _selectedIndex,
+      //        fixedColor: Colors.blue,
+      //        onTap: _onItemTapped,
+      //      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: _onAdd,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
@@ -87,9 +85,7 @@ class _ScaffoldRouteState extends State<ScaffoldRoute>
 }
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({
-    Key? key,
-  }) : super(key: key);
+  const MyDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -108,16 +104,13 @@ class MyDrawer extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: ClipOval(
-                      child: Image.asset(
-                        "imgs/avatar.png",
-                        width: 80,
-                      ),
+                      child: Image.asset("imgs/avatar.png", width: 80),
                     ),
                   ),
                   const Text(
                     "Wendux",
                     style: TextStyle(fontWeight: FontWeight.bold),
-                  )
+                  ),
                 ],
               ),
             ),

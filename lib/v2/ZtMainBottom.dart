@@ -3,6 +3,7 @@ import 'package:zt_flutter_sample_v2/HomePage.dart';
 import 'package:zt_flutter_sample_v2/chapter2/2.4/NewRoutes.dart';
 import 'package:zt_flutter_sample_v2/v2/TPage5.dart';
 import 'package:zt_flutter_sample_v2/v2/ZtNavBottomUI.dart';
+import 'package:zt_flutter_sample_v2/widgets/DoubleClickReturn.dart';
 import 'dart:developer';
 
 import 'TPage1.dart';
@@ -64,17 +65,19 @@ class _HomeState extends State<ZMyApp> with SingleTickerProviderStateMixin {
       // 应用标题
       title: "Flutter底部导航栏",
       // 应用主页
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Material 3')),
-        body: createScreenFor(ScreenSelected.values[screenIndex]),
-        bottomNavigationBar: NavigationBars(
-          onSelectItem: (index) {
-            setState(() {
-              screenIndex = index;
-              handleScreenChanged(screenIndex);
-            });
-          },
-          selectedIndex: screenIndex,
+      home: DoubleClickReturn(
+        child: Scaffold(
+          appBar: AppBar(title: const Text('Material 3')),
+          body: createScreenFor(ScreenSelected.values[screenIndex]),
+          bottomNavigationBar: NavigationBars(
+            onSelectItem: (index) {
+              setState(() {
+                screenIndex = index;
+                handleScreenChanged(screenIndex);
+              });
+            },
+            selectedIndex: screenIndex,
+          ),
         ),
       ),
       //注册路由表

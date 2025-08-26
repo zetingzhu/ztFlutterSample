@@ -2,6 +2,23 @@ import 'package:flutter/material.dart' hide Page;
 import 'package:zt_flutter_sample_v2/chapter2/2.3/TapboxA.dart';
 import 'package:zt_flutter_sample_v2/chapter2/2.3/TapboxB.dart';
 import 'package:zt_flutter_sample_v2/chapter2/2.3/TapboxC.dart';
+import 'package:zt_flutter_sample_v2/chapter4/row.dart';
+import 'package:zt_flutter_sample_v2/chapter4/colum2.dart';
+import 'package:zt_flutter_sample_v2/chapter4/colum3.dart';
+import 'package:zt_flutter_sample_v2/chapter6/ScrollControllerV1.dart';
+import 'package:zt_flutter_sample_v2/chapter6/gridviewV1.dart';
+import 'package:zt_flutter_sample_v2/chapter6/gridviewV2.dart';
+import 'package:zt_flutter_sample_v2/chapter6/gridviewV4.dart';
+import 'package:zt_flutter_sample_v2/chapter6/listviewV2.dart';
+import 'package:zt_flutter_sample_v2/chapter6/listviewV3.dart';
+import 'package:zt_flutter_sample_v2/chapter6/listviewV4.dart';
+import 'package:zt_flutter_sample_v2/chapter6/pageviewV2.dart';
+import 'package:zt_flutter_sample_v2/chapter6/pageviewV3.dart';
+import 'package:zt_flutter_sample_v2/chapter6/pageviewV4.dart';
+import 'package:zt_flutter_sample_v2/chapter7/BarBackCall.dart';
+import 'chapter4/FlexLayoutTestRoute.dart';
+import 'chapter4/colum.dart';
+import 'chapter6/gridviewV3.dart';
 import 'routes.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,7 +32,10 @@ class _MyHomePageState extends State<MyHomePage> {
   List<Widget> _generateItem(BuildContext context, List<Page> children) {
     return children.map<Widget>((page) {
       return ListTile(
-        title: Text(page.title),
+        title: Text(
+          page.title,
+          style: const TextStyle(fontSize: 16, color: Colors.green),
+        ),
         trailing: const Icon(Icons.keyboard_arrow_right),
         onTap: () => page.openPage(context),
       );
@@ -68,13 +88,22 @@ class _MyHomePageState extends State<MyHomePage> {
             title: const Text("布局类组件"),
             children: _generateItem(context, [
               Page("约束", const SizeConstraintsRoute(), withScaffold: false),
+              Page("Row 布局", const RowLayout()),
+              Page("Colum 布局", const ColumLayout()),
+              Page("Colum 特殊情况，多层嵌套", const RowLayout2(), withScaffold: false),
+              Page(
+                "Colum 特殊情况，多层嵌套，占据全屏",
+                const RowLayout3(),
+                withScaffold: false,
+              ),
               Page("Column居中", const CenterColumnRoute()),
-              Page("流式布局", const WrapAndFlowRoute()),
-              Page("层叠布局", const StackRoute()),
-              Page("表格布局", const TableRoute()),
-              Page("对齐及相对定位", const AlignRoute()),
+              Page("弹性布局 Flex", const FlexLayoutTestRoute()),
+              Page("流式布局 WrapAndFlow", const WrapAndFlowRoute()),
+              Page("层叠布局 Stack Positioned ", const StackRoute()),
+              Page("对齐及相对定位 Align", const AlignRoute()),
               Page("LayoutBuilder", const LayoutBuilderRoute(), padding: false),
               Page("AfterLayout", const AfterLayoutRoute()),
+              Page("表格布局", const TableRoute()),
             ]),
           ),
           ExpansionTile(
@@ -82,10 +111,10 @@ class _MyHomePageState extends State<MyHomePage> {
             children: _generateItem(context, [
               Page("填充Padding", const PaddingTestRoute()),
               Page("DecoratedBox", const DecoratedBoxRoute()),
-              Page("变换", const TransformRoute()),
+              Page("变换 Transform 和 RotatedBox ", const TransformRoute()),
               Page("Container", const ContainerRoute()),
+              Page("剪裁 Clip ", const ClipRoute()),
               Page("FittedBox", const FittedBoxRoute()),
-              Page("剪裁", const ClipRoute()),
               Page(
                 "Scaffold、TabBar、底部导航",
                 const ScaffoldRoute(),
@@ -101,23 +130,59 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SingleChildScrollViewTestRoute(),
                 padding: false,
               ),
+              Page("ListViewV2 普通列表", const ListViewV2(), padding: false),
+              Page("ListViewV3 列表分割线", const ListViewV3(), padding: false),
               Page(
-                "InfiniteListView",
-                const InfiniteListView(),
+                "ListView 列表项固定高度列表（没看懂有啥用）",
+                const FixedExtentList(),
                 padding: false,
               ),
+              Page("ListView 无限加载列表", const InfiniteListView(), padding: false),
+              Page("ListViewV4 添加表头", const ListViewV4(), padding: false),
+              Page(
+                "ScrollControllerV1 监听滚动（判断当前位置是否超过1000像素，如果超过则在屏幕右下角显示一个“返回顶部”的按钮）",
+                const ScrollControllerV1(),
+                withScaffold: false,
+                padding: false,
+              ),
+              Page("滚动监听", const ScrollNotificationTestRoute(), padding: false),
               Page("可滚动组件的通用配置", const ScrollViewConfiguration()),
-              Page("列表项固定高度列表", const FixedExtentList(), padding: false),
-              Page("AnimatedList", const AnimatedListRoute(), padding: false),
+              Page(
+                "AnimatedList 可添加删除的列表",
+                const AnimatedListRoute(),
+                padding: false,
+              ),
               Page(
                 "InfiniteGridView",
                 const InfiniteGridView(),
                 padding: false,
               ),
+              Page(
+                "GridView SliverGridDelegateWithFixedCrossAxisCount ",
+                const GridviewV1(),
+                padding: false,
+              ),
+              Page(
+                "GridView SliverGridDelegateWithMaxCrossAxisExtent ",
+                const GridviewV2(),
+                padding: false,
+              ),
+              Page(
+                "GridView SliverGridDelegateWithFixedCrossAxisCount 等价 ",
+                const GridviewV3(),
+                padding: false,
+              ),
+              Page(
+                "GridView SliverGridDelegateWithMaxCrossAxisExtent 等价 ",
+                const GridviewV4(),
+                padding: false,
+              ),
               Page("PageView", const PageViewTest(), padding: false),
+              Page("PageView V2", const PageViewV2(), padding: false),
+              Page("PageView 缓存页面", const PageViewV3(), padding: false),
               Page("KeepAlive Test", const KeepAliveTest(), padding: false),
               Page("TabBarView", const TabViewRoute()),
-              Page("滚动监听", const ScrollNotificationTestRoute(), padding: false),
+              Page("Tab PageView 联动", const PageViewV4()),
               Page(
                 "CustomScrollView",
                 const CustomScrollViewTestRoute(),
@@ -131,13 +196,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 showLog: false,
               ),
               Page(
-                "SliverPersistentHeaderToBox",
-                const SliverPersistentHeaderToBoxRoute(),
+                "SliverFlexibleHeader",
+                const SliverFlexibleHeaderRoute(),
                 padding: false,
               ),
               Page(
-                "SliverFlexibleHeader",
-                const SliverFlexibleHeaderRoute(),
+                "SliverPersistentHeaderToBox",
+                const SliverPersistentHeaderToBoxRoute(),
                 padding: false,
               ),
               Page(
@@ -158,6 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: const Text("功能性组件"),
             children: _generateItem(context, [
               Page("导航返回拦截", const WillPopScopeTestRoute()),
+              Page("导航返回拦截 2", const BackPopScope() ,withScaffold: false),
               Page("数据共享(inheritedWidget)", const InheritedWidgetTestRoute()),
               Page("跨组件状态管理(Provider)", const ProviderRoute()),
               Page("颜色和MaterialColor", const ColorRoute(), withScaffold: false),

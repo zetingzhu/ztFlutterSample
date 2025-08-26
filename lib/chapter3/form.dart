@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class FormTestRoute extends StatefulWidget {
   const FormTestRoute({Key? key}) : super(key: key);
@@ -63,12 +64,26 @@ class _FormTestRouteState extends State<FormTestRoute> {
                       if ((_formKey.currentState as FormState).validate()) {
                         //验证通过提交数据
                       }
+
+                      Fluttertoast.showToast(
+                        msg: "这是一个高度定制化的 Toast",
+                        toastLength: Toast.LENGTH_SHORT,
+                        // 显示时长
+                        gravity: ToastGravity.BOTTOM,
+                        // 位置
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.black54,
+                        textColor: Colors.white,
+                        fontSize: 16.0,
+                      );
+
+
                     },
                   ),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

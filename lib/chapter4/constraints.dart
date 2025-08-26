@@ -1,40 +1,42 @@
 import 'package:flutter/material.dart';
 
 class SizeConstraintsRoute extends StatelessWidget {
-  const SizeConstraintsRoute({Key? key}) : super(key: key);
+  const SizeConstraintsRoute({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     Widget redBox = const DecoratedBox(
       decoration: BoxDecoration(color: Colors.red),
     );
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("约束"),
         actions: const <Widget>[
-          UnconstrainedBox(
-            child: SizedBox(
-              width: 20,
-              height: 20,
-              child: CircularProgressIndicator(
-                strokeWidth: 3,
-                value: .9,
-                valueColor: AlwaysStoppedAnimation(Colors.white70),
-              ),
-            ),
-          )
-
-          // Center(
+          // UnconstrainedBox(
           //   child: SizedBox(
           //     width: 20,
           //     height: 20,
           //     child: CircularProgressIndicator(
           //       strokeWidth: 3,
           //       value: .9,
-          //       valueColor: AlwaysStoppedAnimation(Colors.white70),
+          //       valueColor: AlwaysStoppedAnimation(Colors.red),
           //     ),
           //   ),
           // )
+
+          Center(
+            child: SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(
+                strokeWidth: 3,
+                value: .9,
+                valueColor: AlwaysStoppedAnimation(Colors.blue),
+              ),
+            ),
+          )
         ],
       ),
       body: SingleChildScrollView(
@@ -47,7 +49,9 @@ class SizeConstraintsRoute extends StatelessWidget {
               ),
               child: SizedBox(height: 5.0, child: redBox),
             ),
+
             SizedBox(width: 80.0, height: 80.0, child: redBox),
+
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: 60.0, minHeight: 60.0),
               //父
@@ -63,6 +67,15 @@ class SizeConstraintsRoute extends StatelessWidget {
                 constraints: const BoxConstraints(minWidth: 60.0, minHeight: 60.0),
                 child: redBox,
               ),
+            ),
+            ConstrainedBox(
+                constraints: BoxConstraints(minWidth: 60.0, minHeight: 100.0),  //父
+                child: UnconstrainedBox( //“去除”父级限制
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(minWidth: 90.0, minHeight: 20.0),//子
+                    child: redBox,
+                  ),
+                )
             ),
             UnconstrainedBox(
               alignment: Alignment.topLeft,

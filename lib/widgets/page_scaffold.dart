@@ -53,7 +53,9 @@ class _PageScaffoldState extends State<PageScaffold> {
           ),
         ],
       ),
-      body: VerticalLogPanel(showLogPanel: _showLog, child: wBody()),
+      body: SafeArea(
+        child: VerticalLogPanel(showLogPanel: _showLog, child: wBody()),
+      ),
     );
   }
 
