@@ -87,6 +87,33 @@ class _SwitchAndCheckBoxRouteState extends State<SwitchAndCheckBoxRoute> {
             const Text("选中"),
           ],
         ),
+        Row(
+          children: <Widget>[
+            SizedBox(
+              width: 44, // 自定义宽高
+              height: 44,
+              child: Checkbox(
+                value: _checkboxSelected,
+                activeColor: Colors.red, //选中时的颜色
+                onChanged: (value) {
+                  setState(() {
+                    _checkboxSelected = value!;
+                  });
+                },
+              ),
+            ),
+            const Text("未选中", style: TextStyle(fontSize: 30)),
+            Transform.scale(
+              scale: 3, // 缩放比例（1.0为原始大小）
+              child: Checkbox(
+                value: !_checkboxSelected,
+                activeColor: Colors.red, //选中时的颜色
+                onChanged: (value) {},
+              ),
+            ),
+            const Text("选中"),
+          ],
+        ),
       ],
     );
   }

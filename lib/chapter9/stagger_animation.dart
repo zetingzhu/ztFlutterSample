@@ -67,9 +67,9 @@ class _StaggerRouteState extends State<StaggerRoute>
 
 class StaggerAnimation extends StatelessWidget {
   StaggerAnimation({
-    Key? key,
+    super.key,
     required this.controller,
-  }) : super(key: key) {
+  }) {
     //高度动画
     height = Tween<double>(
       begin: .0,

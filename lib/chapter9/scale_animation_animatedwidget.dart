@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AnimatedImage extends AnimatedWidget {
-  const AnimatedImage({
-    Key? key,
-    required Animation<double> animation,
-  }) : super(key: key, listenable: animation);
+  const AnimatedImage({super.key, required Animation<double> animation})
+    : super(listenable: animation);
 
   @override
   Widget build(BuildContext context) {
     final animation = listenable as Animation<double>;
-    return  Center(
+    return Center(
       child: Image.asset(
         "imgs/avatar.png",
         width: animation.value,
@@ -20,10 +18,10 @@ class AnimatedImage extends AnimatedWidget {
 }
 
 class ScaleAnimationRoute1 extends StatefulWidget {
-  const ScaleAnimationRoute1({Key? key}) : super(key: key);
+  const ScaleAnimationRoute1({super.key});
 
   @override
-  _ScaleAnimationRouteState createState() =>  _ScaleAnimationRouteState();
+  _ScaleAnimationRouteState createState() => _ScaleAnimationRouteState();
 }
 
 class _ScaleAnimationRouteState extends State<ScaleAnimationRoute1>
@@ -34,19 +32,19 @@ class _ScaleAnimationRouteState extends State<ScaleAnimationRoute1>
   @override
   initState() {
     super.initState();
-    controller =  AnimationController(
-        duration: const Duration(seconds: 2), vsync: this);
+    controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
     //图片宽高从0变到300
-    animation =  Tween(begin: 0.0, end: 300.0).animate(controller);
+    animation = Tween(begin: 0.0, end: 300.0).animate(controller);
     //启动动画
     controller.forward();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedImage(
-      animation: animation,
-    );
+    return AnimatedImage(animation: animation);
   }
 
   @override

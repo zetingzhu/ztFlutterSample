@@ -7,12 +7,13 @@ class GradientCircularProgressRoute extends StatefulWidget {
 
   @override
   GradientCircularProgressRouteState createState() {
-    return  GradientCircularProgressRouteState();
+    return GradientCircularProgressRouteState();
   }
 }
 
 class GradientCircularProgressRouteState
-    extends State<GradientCircularProgressRoute> with TickerProviderStateMixin {
+    extends State<GradientCircularProgressRoute>
+    with TickerProviderStateMixin {
   late AnimationController _animationController;
 
   @override
@@ -78,7 +79,11 @@ class GradientCircularProgressRouteState
                             value: _animationController.value,
                           ),
                           GradientCircularProgressIndicator(
-                            colors: const [Colors.red, Colors.orange, Colors.red],
+                            colors: const [
+                              Colors.red,
+                              Colors.orange,
+                              Colors.red,
+                            ],
                             radius: 50.0,
                             stokeWidth: 5.0,
                             value: _animationController.value,
@@ -96,7 +101,11 @@ class GradientCircularProgressRouteState
                           TurnBox(
                             turns: 1 / 8,
                             child: GradientCircularProgressIndicator(
-                              colors: const [Colors.red, Colors.orange, Colors.red],
+                              colors: const [
+                                Colors.red,
+                                Colors.orange,
+                                Colors.red,
+                              ],
                               radius: 50.0,
                               stokeWidth: 5.0,
                               strokeCapRound: true,
@@ -113,7 +122,7 @@ class GradientCircularProgressRouteState
                             child: GradientCircularProgressIndicator(
                               colors: [
                                 Colors.blue.shade700,
-                                Colors.blue.shade200
+                                Colors.blue.shade200,
                               ],
                               radius: 50.0,
                               stokeWidth: 3.0,
@@ -129,7 +138,7 @@ class GradientCircularProgressRouteState
                               Colors.cyan,
                               Colors.green.shade200,
                               Colors.blue,
-                              Colors.red
+                              Colors.red,
                             ],
                             radius: 50.0,
                             stokeWidth: 5.0,
@@ -209,7 +218,7 @@ class GradientCircularProgressRouteState
                                   color: Colors.blueGrey,
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),

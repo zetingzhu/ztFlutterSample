@@ -6,10 +6,12 @@ class HeroAnimationRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListPage(children: [
-      Page('自实现Hero动画', const CustomHeroAnimation()),
-      Page('Flutter Hero动画', const HeroAnimationRouteA()),
-    ]);
+    return ListPage(
+      children: [
+        Page('自实现Hero动画', const CustomHeroAnimation()),
+        Page('Flutter Hero动画', const HeroAnimationRouteA()),
+      ],
+    );
   }
 }
 
@@ -27,10 +29,7 @@ class HeroAnimationRouteA extends StatelessWidget {
             child: Hero(
               tag: "avatar", //唯一标记，前后两个路由页Hero的tag必须相同
               child: ClipOval(
-                child: Image.asset(
-                  "imgs/avatar.png",
-                  width: 50.0,
-                ),
+                child: Image.asset("imgs/avatar.png", width: 50.0),
               ),
             ),
             onTap: () {
@@ -52,12 +51,23 @@ class HeroAnimationRouteA extends StatelessWidget {
                   );
                 },
               ));
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) {
+              //       return Scaffold(
+              //         appBar: AppBar(title: const Text("原图")),
+              //         body: const HeroAnimationRouteB(),
+              //       );
+              //     },
+              //   ),
+              // );
             },
           ),
           const Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: Text("点击头像"),
-          )
+          ),
         ],
       ),
     );
@@ -99,12 +109,11 @@ class _CustomHeroAnimationState extends State<CustomHeroAnimation>
 
   @override
   void initState() {
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 200));
-    _animation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeIn,
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
     );
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
 
     _controller.addListener(() {
       if (_controller.isCompleted || _controller.isDismissed) {
@@ -145,52 +154,54 @@ class _CustomHeroAnimationState extends State<CustomHeroAnimation>
       targetWidget = child2;
     }
 
-    return LayoutBuilder(builder: (context, constraints) {
-      return SizedBox(
-        //我们让Stack 填满屏幕剩余空间
-        width: constraints.maxWidth,
-        height: constraints.maxHeight,
-        child: Stack(
-          alignment: AlignmentDirectional.topCenter,
-          children: [
-            if (showChild1)
-              AfterLayout(
-                //获取小图在Stack中占用的Rect信息
-                callback: (value) => child1Rect = _getRect(value),
-                child: child1,
-              ),
-            if (!showChild1)
-              AnimatedBuilder(
-                animation: _animation,
-                builder: (context, child) {
-                  //求出 rect 插值
-                  final rect = Rect.lerp(
-                    child1Rect,
-                    child2Rect,
-                    _animation.value,
-                  );
-                  // 通过 Positioned 设置组件大小和位置
-                  return Positioned.fromRect(rect: rect!, child: child!);
-                },
-                child: targetWidget,
-              ),
-            // 用于测量 child2 的大小，设置为全透明并且不能响应事件
-            IgnorePointer(
-              child: Center(
-                child: Opacity(
-                  opacity: 0,
-                  child: AfterLayout(
-                    //获取大图在Stack中占用的Rect信息
-                    callback: (value) => child2Rect = _getRect(value),
-                    child: child2,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SizedBox(
+          //我们让Stack 填满屏幕剩余空间
+          width: constraints.maxWidth,
+          height: constraints.maxHeight,
+          child: Stack(
+            alignment: AlignmentDirectional.topCenter,
+            children: [
+              if (showChild1)
+                AfterLayout(
+                  //获取小图在Stack中占用的Rect信息
+                  callback: (value) => child1Rect = _getRect(value),
+                  child: child1,
+                ),
+              if (!showChild1)
+                AnimatedBuilder(
+                  animation: _animation,
+                  builder: (context, child) {
+                    //求出 rect 插值
+                    final rect = Rect.lerp(
+                      child1Rect,
+                      child2Rect,
+                      _animation.value,
+                    );
+                    // 通过 Positioned 设置组件大小和位置
+                    return Positioned.fromRect(rect: rect!, child: child!);
+                  },
+                  child: targetWidget,
+                ),
+              // 用于测量 child2 的大小，设置为全透明并且不能响应事件
+              IgnorePointer(
+                child: Center(
+                  child: Opacity(
+                    opacity: 0,
+                    child: AfterLayout(
+                      //获取大图在Stack中占用的Rect信息
+                      callback: (value) => child2Rect = _getRect(value),
+                      child: child2,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      );
-    });
+            ],
+          ),
+        );
+      },
+    );
   }
 
   Widget wChild1() {

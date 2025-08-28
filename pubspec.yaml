@@ -30,6 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  # https://pub.dev/packages/intl/install 国际化
+  intl: ^0.20.2
 
   # https://pub.dev/packages/flukit 是一个Flutter Widget库。
   flukit: ^3.0.1
@@ -44,13 +48,18 @@ dependencies:
   # 用于生成随机句子和段落（类似于“lorem ipsum”生成器）
   flutter_lorem: ^2.0.0
 
+  # https://pub.dev/packages/image_picker
   image_picker: ^0.8.2
+  # https://pub.dev/packages/camera 相机拍照
   camera: ^0.11.2
   video_player: ^2.10.0
+  # https://pub.dev/packages/path_provider
   path_provider: ^2.1.5
   web_socket_channel: ^3.0.3
   webview_flutter: ^4.13.0
   camera_android_camerax: ^0.6.19
+  # MIME type detection
+  mime: ^1.0.4
 
   # https://pub.dev/packages/fluttertoast toast 第三方库
   fluttertoast: ^8.2.12
@@ -115,3 +124,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+  # 国际化自动生成代码的配置
+  generate: true

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../common.dart';
 
 class CustomPaintRoute extends StatelessWidget {
-  const CustomPaintRoute({Key? key}) : super(key: key);
+  const CustomPaintRoute({super.key});
 
   @override
   Widget build(BuildContext context) {

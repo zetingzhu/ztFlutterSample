@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' hide Page;
+import 'package:image_picker/image_picker.dart';
 import 'package:zt_flutter_sample_v2/chapter2/2.3/TapboxA.dart';
 import 'package:zt_flutter_sample_v2/chapter2/2.3/TapboxB.dart';
 import 'package:zt_flutter_sample_v2/chapter2/2.3/TapboxC.dart';
@@ -16,9 +17,13 @@ import 'package:zt_flutter_sample_v2/chapter6/pageviewV2.dart';
 import 'package:zt_flutter_sample_v2/chapter6/pageviewV3.dart';
 import 'package:zt_flutter_sample_v2/chapter6/pageviewV4.dart';
 import 'package:zt_flutter_sample_v2/chapter7/BarBackCall.dart';
+import 'package:zt_flutter_sample_v2/chapter8/notificationV2.dart';
+import 'package:zt_flutter_sample_v2/v5/CameraApp.dart';
+import 'package:zt_flutter_sample_v2/v5/ImagePicker.dart';
 import 'chapter4/FlexLayoutTestRoute.dart';
 import 'chapter4/colum.dart';
 import 'chapter6/gridviewV3.dart';
+import 'chapter9/scale_animation_listener.dart';
 import 'routes.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -49,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         children: <Widget>[
           ExpansionTile(
-            title: const Text("第一个Flutter应用"),
+            title: const Text("2.第一个Flutter应用"),
             children: _generateItem(context, [
               Page("计数器", const CounterRoute(), withScaffold: false),
               Page("路由传值", const RouterTestRoute()),
@@ -70,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
           ),
           ExpansionTile(
-            title: const Text("基础组件"),
+            title: const Text("3.基础组件"),
             children: _generateItem(context, [
               // PageInfo("Context测试",  ContextRoute(), withScaffold: false),
               // PageInfo("Widget树中获取State对象",  RetrieveStateRoute(), withScaffold: false),
@@ -85,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
           ),
           ExpansionTile(
-            title: const Text("布局类组件"),
+            title: const Text("4.布局类组件"),
             children: _generateItem(context, [
               Page("约束", const SizeConstraintsRoute(), withScaffold: false),
               Page("Row 布局", const RowLayout()),
@@ -107,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
           ),
           ExpansionTile(
-            title: const Text("容器类组件"),
+            title: const Text("5.容器类组件"),
             children: _generateItem(context, [
               Page("填充Padding", const PaddingTestRoute()),
               Page("DecoratedBox", const DecoratedBoxRoute()),
@@ -123,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
           ),
           ExpansionTile(
-            title: const Text("可滚动组件"),
+            title: const Text("6.可滚动组件"),
             children: _generateItem(context, [
               Page(
                 "SingleChildScrollView",
@@ -220,10 +225,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
           ),
           ExpansionTile(
-            title: const Text("功能性组件"),
+            title: const Text("7.功能性组件"),
             children: _generateItem(context, [
               Page("导航返回拦截", const WillPopScopeTestRoute()),
-              Page("导航返回拦截 2", const BackPopScope() ,withScaffold: false),
+              Page("导航返回拦截 2", const BackPopScope(), withScaffold: false),
               Page("数据共享(inheritedWidget)", const InheritedWidgetTestRoute()),
               Page("跨组件状态管理(Provider)", const ProviderRoute()),
               Page("颜色和MaterialColor", const ColorRoute(), withScaffold: false),
@@ -233,36 +238,36 @@ class _MyHomePageState extends State<MyHomePage> {
                 const ValueListenableRoute(),
                 withScaffold: false,
               ),
-              Page(
-                "FutureBuilder和StreamBuilder",
-                const FutureAndStreamBuilderRoute(),
-              ),
+              Page("FutureBuilder", const FutureAndStreamBuilderRoute()),
+              Page("StreamBuilder", const StreamBuilderRoute()),
               Page("对话框", const DialogTestRoute()),
             ]),
           ),
           ExpansionTile(
-            title: const Text("事件处理与通知"),
+            title: const Text("8.事件处理与通知"),
             children: _generateItem(context, [
               Page("原生指针事件", const PointerRoute(), padding: false),
               Page("手势识别", const GestureRoute(), padding: false),
-              Page("PointerDownListener", const PointerDownListenerRoute()),
               Page(
                 "Stack 点击测试",
                 const StackEventTest(),
                 padding: false,
                 showLog: false,
               ),
-              Page("通知(Notification)", const NotificationRoute()),
               Page("事件冲突", const EventConflictTest()),
+              Page("通知(Notification) 自定义通知", const NotificationRoute()),
+              Page("通知(Notification) V2", const NotificationV2()),
+              Page("PointerDownListener", const PointerDownListenerRoute()),
             ]),
           ),
           ExpansionTile(
-            title: const Text("动画"),
+            title: const Text("9.动画"),
             children: _generateItem(context, [
               Page("放大动画-原始版", const ScaleAnimationRoute()),
               Page("放大动画-AnimatedWidget版", const ScaleAnimationRoute1()),
               Page("放大动画-AnimatedBuilder版", const ScaleAnimationRoute2()),
               Page("放大动画-GrowTransition版", const GrowTransitionRoute()),
+              Page("放大动画-动画监听", const ScaleAnimationRoute3()),
               Page("Hero动画", const HeroAnimationRoute(), padding: false),
               Page("交织动画(Stagger Animation)", const StaggerRoute()),
               Page(
@@ -274,10 +279,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
           ),
           ExpansionTile(
-            title: const Text("自定义组件"),
+            title: const Text("10.自定义组件"),
             children: _generateItem(context, [
               Page("GradientButton", const GradientButtonRoute()),
-              Page("Material APP", const ScaffoldRoute(), withScaffold: false),
               Page("旋转容器：TurnBox", const TurnBoxRoute()),
               Page("CustomPaint", const CustomPaintRoute()),
               Page("自绘控件：圆形渐变进度条", const GradientCircularProgressRoute()),
@@ -292,7 +296,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
           ),
           ExpansionTile(
-            title: const Text("文件与网络"),
+            title: const Text("11.文件与网络"),
             children: _generateItem(context, [
               Page("文件操作", FileOperationRoute(), withScaffold: false),
               Page("Http请求", HttpTestRoute()),
@@ -327,16 +331,17 @@ class _MyHomePageState extends State<MyHomePage> {
             ]),
           ),
 
-          // ExpansionTile(
-          //   title: Text("包与插件"),
-          //   children: _generateItem(context, [
-          //     PageInfo("相机",  CameraExampleHome(),
-          //         withScaffold: false),
-          //     PageInfo(
-          //         "PlatformView示例（webview）",  PlatformViewRoute(),
-          //         padding: false),
-          //   ]),
-          // ),
+          ExpansionTile(
+            title: Text("包与插件"),
+            children: _generateItem(context, [
+              Page("Camera 相机", const CameraApp(), withScaffold: false),
+              Page(
+                "image_picker 图片文件选择器",
+                const ImagePickerSample(title: "Image Picker Demo"),
+                withScaffold: false,
+              ),
+            ]),
+          ),
         ],
       ),
     );

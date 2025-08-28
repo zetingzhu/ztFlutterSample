@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 
 class ChangeNotifierProvider<T extends ChangeNotifier> extends StatefulWidget {
   const ChangeNotifierProvider({
-    Key? key,
+    super.key,
     required this.data,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final T data;
@@ -68,10 +68,10 @@ class _ChangeNotifierProviderState<T extends ChangeNotifier>
 // 一个通用的InheritedWidget，保存需要跨组件共享的状态
 class InheritedProvider<T> extends InheritedWidget {
   const InheritedProvider({
-    Key? key,
+    super.key,
     required this.data,
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   final T data;
 
@@ -85,9 +85,9 @@ class InheritedProvider<T> extends InheritedWidget {
 // 这是一个便捷类，会获得当前context和指定数据类型的Provider
 class Consumer<T> extends StatelessWidget {
   const Consumer({
-    Key? key,
+    super.key,
     required this.builder,
-  }) : super(key: key);
+  });
 
   final Widget Function(BuildContext context, T? value) builder;
 

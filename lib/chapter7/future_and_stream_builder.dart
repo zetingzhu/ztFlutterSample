@@ -39,29 +39,48 @@ class _FutureAndStreamBuilderRouteState
         },
       ),
     );
-    // return Center(
-    //   child: StreamBuilder<int>(
-    //     stream: counter(), //
-    //     //initialData: ,// a Stream<int> or null
-    //     builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-    //       if (snapshot.hasError) return Text('Error: ${snapshot.error}');
-    //       switch (snapshot.connectionState) {
-    //         case ConnectionState.none:
-    //           return Text('没有Stream');
-    //         case ConnectionState.waiting:
-    //           return Text('等待数据...');
-    //         case ConnectionState.active:
-    //           return Text('active: ${snapshot.data}');
-    //         case ConnectionState.done:
-    //           return Text('Stream已关闭');
-    //       }
-    //     },
-    //   ),
-    // );
   }
 
   Future<String> mockNetworkData() async {
     return Future.delayed(const Duration(seconds: 3), () => "我是从互联网上获取的数据");
+  }
+}
+
+class StreamBuilderRoute extends StatefulWidget {
+  const StreamBuilderRoute({super.key});
+
+  @override
+  StreamBuilderRouteState createState() => StreamBuilderRouteState();
+}
+
+class StreamBuilderRouteState extends State<StreamBuilderRoute> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: StreamBuilder<int>(
+        stream: counter(), //
+        //initialData: ,// a Stream<int> or null
+        builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+          if (snapshot.hasError) return Text('Error: ${snapshot.error}');
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              return Text('没有Stream');
+            case ConnectionState.waiting:
+              return Text('等待数据...');
+            case ConnectionState.active:
+              return Text('active: ${snapshot.data}');
+            case ConnectionState.done:
+              return Text('Stream已关闭');
+          }
+        },
+      ),
+    );
   }
 
   Stream<int> counter() {

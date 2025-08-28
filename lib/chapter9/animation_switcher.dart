@@ -40,7 +40,7 @@ class _AnimatedSwitcherRouteState extends State<AnimatedSwitcherRoute> {
           ClipRect(
             child: Padding(
               padding: const EdgeInsets.only(top: 50),
-              child: wSwitcher(AxisDirection.down),
+              child: wSwitcher(AxisDirection.up),
             ),
           ),
           Padding(

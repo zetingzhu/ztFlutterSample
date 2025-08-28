@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InheritedWidgetTestRoute extends StatefulWidget {
-  const InheritedWidgetTestRoute({Key? key}) : super(key: key);
+  const InheritedWidgetTestRoute({super.key});
 
   @override
   _InheritedWidgetTestRouteState createState() =>
@@ -28,7 +28,7 @@ class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
               child: const Text("Increment"),
               //每点击一次，将count自增，然后重新build,ShareDataWidget的data将被更新
               onPressed: () => setState(() => ++count),
-            )
+            ),
           ],
         ),
       ),
@@ -37,20 +37,19 @@ class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
 }
 
 class ShareDataWidget extends InheritedWidget {
-  const ShareDataWidget({
-    Key? key,
-    required this.data,
-    required Widget child,
-  }) : super(key: key, child: child);
+  const ShareDataWidget({super.key, required this.data, required super.child});
 
   final int data; //需要在子树中共享的数据，保存点击次数
 
   //定义一个便捷方法，方便子树中的widget获取共享数据
   static ShareDataWidget? of(BuildContext context) {
-    //return context.dependOnInheritedWidgetOfExactType<ShareDataWidget>();
+    // 会通知所有树
+    // return context.dependOnInheritedWidgetOfExactType<ShareDataWidget>();
+    // 不会通知所有树
     return context
-        .getElementForInheritedWidgetOfExactType<ShareDataWidget>()
-        ?.widget as ShareDataWidget;
+            .getElementForInheritedWidgetOfExactType<ShareDataWidget>()
+            ?.widget
+        as ShareDataWidget;
   }
 
   //该回调决定当data发生变化时，是否通知子树中依赖data的Widget

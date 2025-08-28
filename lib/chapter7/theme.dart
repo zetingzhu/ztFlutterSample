@@ -47,7 +47,7 @@ class _ThemeTestRouteState extends State<ThemeTestRoute> {
         floatingActionButton: FloatingActionButton(
             onPressed: () => //切换主题
                 setState(() => _themeColor =
-                    _themeColor == Colors.teal ? Colors.blue : Colors.teal,),
+                    _themeColor == Colors.red ? Colors.blue : Colors.red,),
             child: const Icon(Icons.palette)),
       ),
     );
