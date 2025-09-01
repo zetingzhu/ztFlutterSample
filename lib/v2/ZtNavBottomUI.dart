@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zt_flutter_sample_v2/l10n/app_localizations.dart';
 
 import 'package:zt_flutter_sample_v2/v2/ZtNavCustomItem.dart';
 
@@ -51,40 +52,48 @@ class _NavigationBarsState extends State<NavigationBars> {
         });
         widget.onSelectItem!(index);
       },
-      destinations: barWithBadgeDestinations(selectedIndex, clickSelected),
+      destinations: barWithBadgeDestinations(
+        context,
+        selectedIndex,
+        clickSelected,
+      ),
     );
   }
 }
 
-List<Widget> barWithBadgeDestinations(int selectedIndex, Function(int) onTap) {
+List<Widget> barWithBadgeDestinations(
+  BuildContext mContext,
+  int selectedIndex,
+  Function(int) onTap,
+) {
   return [
     NavigationDestination(
       tooltip: '',
       icon: Badge.count(count: 1000, child: const Icon(Icons.mail_outlined)),
-      label: 'Main',
+      label: AppLocalizations.of(mContext)!.s1_1,
       selectedIcon: Badge.count(count: 1000, child: const Icon(Icons.mail)),
     ),
-    const NavigationDestination(
+    NavigationDestination(
       tooltip: '',
       icon: Badge(label: Text('10'), child: Icon(Icons.chat_bubble_outline)),
-      label: 'Chat',
+      label: AppLocalizations.of(mContext)!.s1_2,
       selectedIcon: Badge(label: Text('10'), child: Icon(Icons.chat_bubble)),
     ),
-    const NavigationDestination(
+    NavigationDestination(
       tooltip: '',
       icon: Badge(child: Icon(Icons.group_outlined)),
-      label: 'Rooms',
+      label: AppLocalizations.of(mContext)!.s1_3,
       selectedIcon: Badge(child: Icon(Icons.group_rounded)),
     ),
     NavigationDestination(
       tooltip: '',
       icon: Badge.count(count: 3, child: const Icon(Icons.videocam_outlined)),
-      label: 'Meet',
+      label: AppLocalizations.of(mContext)!.s1_4,
       selectedIcon: Badge.count(count: 3, child: const Icon(Icons.videocam)),
     ),
     ZtNavCustomItem(
       mIcon: Icons.settings,
-      label: '设置',
+      label: AppLocalizations.of(mContext)!.s1_5,
       hasBadge: true,
       isSelected: selectedIndex == 4,
       onTap: () => onTap(4),

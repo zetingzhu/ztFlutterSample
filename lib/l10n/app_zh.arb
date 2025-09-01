@@ -1,0 +1,13 @@
+{
+    "zztTitle": "ZZT Flutter 学习记录",
+    "s1_1": "主页",
+    "s1_2": "聊天",
+    "s1_3": "房间",
+    "s1_4": "会议",
+    "s1_5": "设置",
+    "helloWorld": "你好世界！！！",
+    "selectLanguage": "选择语言",
+    "languageSettings": "语言设置",
+    "languageChanged": "语言已切换为",
+    "cancel": "取消"
+}

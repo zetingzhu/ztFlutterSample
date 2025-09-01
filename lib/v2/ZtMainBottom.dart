@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:zt_flutter_sample_v2/HomePage.dart';
 import 'package:zt_flutter_sample_v2/chapter2/2.4/NewRoutes.dart';
 import 'package:zt_flutter_sample_v2/v2/TPage5.dart';
@@ -6,10 +8,13 @@ import 'package:zt_flutter_sample_v2/v2/ZtNavBottomUI.dart';
 import 'package:zt_flutter_sample_v2/widgets/DoubleClickReturn.dart';
 import 'dart:developer';
 
+import '../l10n/LocaleProvider.dart';
+import '../l10n/app_localizations.dart';
 import 'TPage1.dart';
 import 'TPage2.dart';
 import 'TPage3.dart';
 import 'TPage4.dart';
+import 'package:provider/provider.dart';
 
 enum ScreenSelected {
   main(0),
@@ -58,16 +63,39 @@ class _HomeState extends State<ZMyApp> with SingleTickerProviderStateMixin {
     // debugger(when: true, message: "debugger 打印日志");
     // print(" print 打印日志");
     // debugPrint( 'debugPrint 打印日志');
+    final localeProvider = Provider.of<LocaleProvider>(context);
+    if (kDebugMode) {
+      print("主页启动获取的 provider 语言: ${localeProvider.locale}");
+    }
 
     return MaterialApp(
       // 是否显示右上角debug标志
       debugShowCheckedModeBanner: true,
+      // 使用 provider 中的 locale
+      locale: localeProvider.locale,
       // 应用标题
       title: "Flutter底部导航栏",
+      // 本地化委托
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      // 支持的语言
+      supportedLocales: AppLocalizations.supportedLocales,
       // 应用主页
       home: DoubleClickReturn(
         child: Scaffold(
-          appBar: AppBar(title: const Text('Material 3')),
+          appBar: AppBar(
+            title: Builder(
+              builder: (context) {
+                if (kDebugMode) {
+                  print(
+                    "AppLocalizations.of(context) result: ${AppLocalizations.of(context)}",
+                  );
+                }
+                return Text(
+                  AppLocalizations.of(context)?.zztTitle ?? 'ZZT Flutter 学习记录',
+                );
+              },
+            ),
+          ),
           body: createScreenFor(ScreenSelected.values[screenIndex]),
           bottomNavigationBar: NavigationBars(
             onSelectItem: (index) {

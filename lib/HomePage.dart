@@ -20,6 +20,8 @@ import 'package:zt_flutter_sample_v2/chapter7/BarBackCall.dart';
 import 'package:zt_flutter_sample_v2/chapter8/notificationV2.dart';
 import 'package:zt_flutter_sample_v2/v5/CameraApp.dart';
 import 'package:zt_flutter_sample_v2/v5/ImagePicker.dart';
+import 'package:zt_flutter_sample_v2/v5/LanguageUtil.dart';
+import 'chapter11/weather_example.dart';
 import 'chapter4/FlexLayoutTestRoute.dart';
 import 'chapter4/colum.dart';
 import 'chapter6/gridviewV3.dart';
@@ -50,7 +52,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Flutter实战')),
       body: ListView(
         children: <Widget>[
           ExpansionTile(
@@ -302,6 +303,8 @@ class _MyHomePageState extends State<MyHomePage> {
               Page("Http请求", HttpTestRoute()),
               Page("WebSocket", WebSocketRoute(), withScaffold: false),
               Page("Socket", const SocketRoute()),
+              Page("测试网络请求工具", const SocketRoute()),
+              Page("测试网络请求高德天气", WeatherExample(), withScaffold: false),
             ]),
           ),
           ExpansionTile(
@@ -340,6 +343,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 const ImagePickerSample(title: "Image Picker Demo"),
                 withScaffold: false,
               ),
+              Page("国际化切换", LanguageSetting(), withScaffold: false),
             ]),
           ),
         ],

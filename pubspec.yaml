@@ -63,6 +63,15 @@ dependencies:
 
   # https://pub.dev/packages/fluttertoast toast 第三方库
   fluttertoast: ^8.2.12
+  
+  # Provider状态管理
+  provider: ^6.1.1
+  
+  # 本地存储
+  shared_preferences: ^2.2.2
+
+  #https://pub.dev/packages/dio  网络请求
+  dio: ^5.9.0
 
 dev_dependencies:
   flutter_test:
