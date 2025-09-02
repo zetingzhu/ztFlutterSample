@@ -36,7 +36,6 @@ dependencies:
   intl: ^0.20.2
 
   # https://pub.dev/packages/flukit 是一个Flutter Widget库。
-  flukit: ^3.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -57,7 +56,9 @@ dependencies:
   path_provider: ^2.1.5
   web_socket_channel: ^3.0.3
   webview_flutter: ^4.13.0
-  camera_android_camerax: ^0.6.19
+
+  # https://pub.dev/packages/camera_android_camerax/install  camera_android_camerax: ^0.6.21
+
   # MIME type detection
   mime: ^1.0.4
 
@@ -72,6 +73,9 @@ dependencies:
 
   #https://pub.dev/packages/dio  网络请求
   dio: ^5.9.0
+
+  # https://pub-web.flutter-io.cn/packages/pigeon flutter 和原生交互
+  pigeon: ^26.0.1
 
 dev_dependencies:
   flutter_test:

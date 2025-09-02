@@ -18,9 +18,13 @@ import 'package:zt_flutter_sample_v2/chapter6/pageviewV3.dart';
 import 'package:zt_flutter_sample_v2/chapter6/pageviewV4.dart';
 import 'package:zt_flutter_sample_v2/chapter7/BarBackCall.dart';
 import 'package:zt_flutter_sample_v2/chapter8/notificationV2.dart';
+import 'package:zt_flutter_sample_v2/v5/ShowAndroidV2.dart';
 import 'package:zt_flutter_sample_v2/v5/CameraApp.dart';
 import 'package:zt_flutter_sample_v2/v5/ImagePicker.dart';
 import 'package:zt_flutter_sample_v2/v5/LanguageUtil.dart';
+import 'package:zt_flutter_sample_v2/v5/ShowAndroidV3.dart';
+import 'package:zt_flutter_sample_v2/v5/ShowAndroidV1.dart';
+import 'package:zt_flutter_sample_v2/v5/ShowAndroidV4.dart';
 import 'chapter11/weather_example.dart';
 import 'chapter4/FlexLayoutTestRoute.dart';
 import 'chapter4/colum.dart';
@@ -344,6 +348,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 withScaffold: false,
               ),
               Page("国际化切换", LanguageSetting(), withScaffold: false),
+              Page("调用 Android 原生 1", ShowAndroidUi(), withScaffold: false),
+              Page("调用 Android 原生 2", BatteryRoute(), withScaffold: false),
+              Page("调用 Android 原生 4", ShowAndroidV4(), withScaffold: false),
+              Page("调用 Android 原生 3", SendMessageState(), withScaffold: false),
             ]),
           ),
         ],

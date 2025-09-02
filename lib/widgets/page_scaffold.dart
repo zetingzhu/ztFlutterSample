@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../common.dart';
-import 'package:flukit/flukit.dart';
+import '../flukit/log_panel.dart';
 
 class PageScaffold extends StatefulWidget {
   const PageScaffold({

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart' hide Page;
 import 'HomePage.dart';
 import 'common.dart';
+import 'flukit/log_panel.dart';
 import 'routes.dart';
-import 'package:flukit/flukit.dart';
 
 void main() {
   runZoned(

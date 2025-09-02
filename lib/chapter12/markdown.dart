@@ -1,7 +1,6 @@
-import 'package:flukit/flukit.dart';
 import 'package:flutter/material.dart' hide Page;
-import 'package:webview_flutter/webview_flutter.dart';
 import '../common.dart';
+import '../flukit/scale_view.dart';
 
 class MarkdownRoute extends StatefulWidget {
   const MarkdownRoute({Key? key}) : super(key: key);
@@ -39,9 +38,7 @@ class _MarkdownRouteState extends State<MarkdownRoute> {
                   _isLight = !_isLight;
                 });
               },
-              child: Text(
-                '切换为${_isLight ? '深色主题' : '浅色主题'}',
-              ),
+              child: Text('切换为${_isLight ? '深色主题' : '浅色主题'}'),
             ),
             const Padding(padding: EdgeInsets.only(left: 20)),
             ElevatedButton(
@@ -50,9 +47,7 @@ class _MarkdownRouteState extends State<MarkdownRoute> {
                   _showLineNumber = !_showLineNumber;
                 });
               },
-              child: Text(
-                '${_showLineNumber ? '代码不' : ''}显示行号',
-              ),
+              child: Text('${_showLineNumber ? '代码不' : ''}显示行号'),
             ),
           ],
         ),
@@ -92,10 +87,7 @@ class _MarkdownRouteState extends State<MarkdownRoute> {
   viewImage(context, String url) {
     Page(
       '查看图片',
-      ScaleView(
-        child: Image.network(url),
-        parentScrollableAxis: null,
-      ),
+      ScaleView(child: Image.network(url), parentScrollableAxis: null),
       showLog: false,
       padding: false,
     ).openPage(context);
