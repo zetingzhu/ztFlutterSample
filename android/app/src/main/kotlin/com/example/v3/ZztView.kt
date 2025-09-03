@@ -12,7 +12,6 @@ import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.platform.PlatformView
-import java.util.Objects
 
 class ZztView(
     context: Context,
@@ -95,6 +94,7 @@ class ZztView(
             override fun afterTextChanged(s: Editable?) {
                 val input = s.toString()
                 androidSendFlutterData(input)
+                Log.d(TAG, "android 输入框文字 ：$input")
             }
         })
     }
@@ -182,14 +182,20 @@ class ZztView(
             FLUTTER_TO_ANDROID -> {
                 // 回调结果对象
                 // 获取Flutter端传过来的数据
+                var inputStr: String? = call.argument<String>("inputStr")
                 val flutterCount: Int? = call.argument<Int>("flutterNum")
+
                 Log.d(
                     TAG,
-                    "$FLUTTER_TO_ANDROID + flutterCount：$flutterCount arguments：${arguments}"
+                    "$FLUTTER_TO_ANDROID    arguments：${arguments}"
                 )
 
-                curNumFlutter = flutterCount ?: 0
-                binding?.tvSaveCount?.setText("接收Flutter端发送的点击次数:" + curNumFlutter)
+                if (inputStr?.isNotEmpty() == true) {
+                    binding?.tvSaveCount?.text = "接收Flutter端发送的点击次数:$inputStr"
+                } else {
+                    curNumFlutter = flutterCount ?: 0
+                    binding?.tvSaveCount?.setText("接收Flutter端发送的点击次数:" + curNumFlutter)
+                }
                 result.success("${FLUTTER_TO_ANDROID} success")
             }
 

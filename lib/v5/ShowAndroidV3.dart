@@ -27,16 +27,16 @@ class _SendMessageStateState extends State<SendMessageState> {
   // Android端 获取 Flutter端 数据
   static const String ANDROID_GET_FLUTTER = 'androidGetFlutter';
 
-  late MethodChannel mChannel;
+  MethodChannel? mChannel;
 
   // flutter 记录数据
   final ValueNotifier<int> curNumFlutter = ValueNotifier<int>(11);
 
   // android 发送数据
-  final ValueNotifier<int> fromAndroid = ValueNotifier<int>(22);
+  final ValueNotifier<dynamic> fromAndroid = ValueNotifier<dynamic>(22);
 
   // 直接获取 android 数据
-  final ValueNotifier<int> getAndroidNum = ValueNotifier<int>(22);
+  final ValueNotifier<int> getAndroidNum = ValueNotifier<int>(33);
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _SendMessageStateState extends State<SendMessageState> {
     print('initChannel viewId: $viewId');
 
     mChannel = MethodChannel("$mChannelName/${viewId}");
-    mChannel.setMethodCallHandler(callHandler);
+    mChannel?.setMethodCallHandler(callHandler);
   }
 
   /// 监听来自 Android端 的消息通道
@@ -62,8 +62,13 @@ class _SendMessageStateState extends State<SendMessageState> {
     switch (methodName) {
       case ANDROID_TO_FLUTTER:
         {
-          int androidCount = call.arguments['androidNum'];
-          fromAndroid.value = androidCount;
+          String inputStr = call.arguments['inputStr'];
+          if (inputStr.isNotEmpty) {
+            fromAndroid.value = inputStr;
+          } else {
+            int androidCount = call.arguments['androidNum'];
+            fromAndroid.value = androidCount;
+          }
           return '$ANDROID_TO_FLUTTER ---> success';
         }
       case ANDROID_GET_FLUTTER:
@@ -75,22 +80,23 @@ class _SendMessageStateState extends State<SendMessageState> {
 
   Future<void> sendMessageToApp(String json) async {
     try {
-      await mChannel.invokeMethod('sendMessage', json);
+      await mChannel?.invokeMethod('sendMessage', json);
     } catch (e) {
       debugPrint('e:${e}');
     }
   }
 
   /// Flutter端 向 Android端 发送数据，PUT 操作
-  flutterSendAndroidData() {
+  flutterSendAndroidData(String input) {
     Map<String, dynamic> map = {
       'flutterNum': curNumFlutter.value,
       'zzz': 100,
       'flutter': 'flutter Name',
       'android': 'Android params',
+      'inputStr': input,
     };
     mChannel
-        .invokeMethod(FLUTTER_TO_ANDROID, map)
+        ?.invokeMethod(FLUTTER_TO_ANDROID, map)
         .then((value) {
           debugPrint('$FLUTTER_TO_ANDROID --- Result：$value');
         })
@@ -102,7 +108,7 @@ class _SendMessageStateState extends State<SendMessageState> {
   ///  Flutter端 获取 Android端 数据，GET 操作
   flutterGetAndroidData() {
     mChannel
-        .invokeMethod(FLUTTER_GET_ANDROID)
+        ?.invokeMethod(FLUTTER_GET_ANDROID)
         .then((value) {
           debugPrint('$FLUTTER_GET_ANDROID --- Result：$value');
           getAndroidNum.value = value ?? 0;
@@ -194,7 +200,9 @@ class _SendMessageStateState extends State<SendMessageState> {
                   ),
                   ElevatedButton(
                     style: btnStyle,
-                    onPressed: flutterSendAndroidData,
+                    onPressed: () {
+                      flutterSendAndroidData('');
+                    },
                     child: const Text('发送给Android端'),
                   ),
                 ],
@@ -248,7 +256,8 @@ class _SendMessageStateState extends State<SendMessageState> {
                 ),
               ),
               onChanged: (text) {
-                debugPrint('输入字符：${text}');
+                debugPrint('flutter 输入字符：${text}');
+                flutterSendAndroidData(text);
               },
             ),
           ],
