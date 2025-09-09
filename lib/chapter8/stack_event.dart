@@ -7,11 +7,11 @@ class StackEventTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListPage(children: [
-      Page('事件共享', const StickerTest()),
-      Page('水印', const _WaterMarkTest(), padding: false),
-      Page('HitTestBehaviorTest', const HitTestBehaviorTest(),padding: false),
-      Page('所有子节点都可以响应事件', const AllChildrenCanResponseEvent()),
-      Page('手势', const GestureHitTestBlockerTest()),
+      ZPage('事件共享', const StickerTest()),
+      ZPage('水印', const _WaterMarkTest(), padding: false),
+      ZPage('HitTestBehaviorTest', const HitTestBehaviorTest(),padding: false),
+      ZPage('所有子节点都可以响应事件', const AllChildrenCanResponseEvent()),
+      ZPage('手势', const GestureHitTestBlockerTest()),
     ]);
   }
 }

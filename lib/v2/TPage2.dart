@@ -14,12 +14,24 @@ class TPage2 extends StatelessWidget {
         mItem(context, 'State 各种状态研究', const CounterWidget(initValue: 10)),
         ListTile(
           title: Text('命名路由'),
-          onTap: () => Navigator.pushNamed(context, "new_page"),
+          onTap: () => Navigator.pushNamed(context, "/new_page"),
         ),
         ListTile(
           title: Text('命名路由,带上参数'),
           onTap: () =>
-              Navigator.pushNamed(context, "new_routes", arguments: "hi"),
+              Navigator.pushNamed(context, "/new_routes", arguments: "hi"),
+        ),
+        ListTile(
+          title: Text('路由: /home'),
+          onTap: () => Navigator.pushNamed(context, "/home"),
+        ),
+        ListTile(
+          title: Text('路由: /setting'),
+          onTap: () => Navigator.pushNamed(context, "/setting"),
+        ),
+        ListTile(
+          title: Text('路由: /text'),
+          onTap: () => Navigator.pushNamed(context, "/text"),
         ),
       ],
     );

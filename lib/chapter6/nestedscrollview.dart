@@ -8,25 +8,25 @@ class NestedScrollViewRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListPage(
       children: [
-        Page('嵌套 ListView', const NestedListView(), withScaffold: false),
-        Page(
+        ZPage('嵌套 ListView', const NestedListView(), withScaffold: false),
+        ZPage(
           'Snap 效果的AppBar(bug版)',
           const SnapAppBarWithBug(),
           withScaffold: false,
         ),
-        Page('Snap 效果的AppBar（无bug）', const SnapAppBar2(), withScaffold: false),
-        Page(
+        ZPage('Snap 效果的AppBar（无bug）', const SnapAppBar2(), withScaffold: false),
+        ZPage(
           '嵌套 TabBarView 0 ',
           const NestedTabBarView0(),
           withScaffold: false,
         ),
-        Page('嵌套 TabBarView', const NestedTabBarView1(), withScaffold: false),
-        Page(
+        ZPage('嵌套 TabBarView', const NestedTabBarView1(), withScaffold: false),
+        ZPage(
           '复杂的嵌套 TabBarView',
           const NestedTabBarView2(),
           withScaffold: false,
         ),
-        Page(
+        ZPage(
           '复杂的嵌套 TabBarView ，我需要的样式',
           const NestedTabBarView3(),
           withScaffold: false,

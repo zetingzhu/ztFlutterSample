@@ -8,12 +8,12 @@ class GestureRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListPage(children: [
-      Page('点击、双击、长按', const GestureTest()),
-      Page('拖动、滑动', _Drag()),
-      Page('单一方向拖动', _DragVertical()),
-      Page('缩放', const _Scale()),
-      Page('GestureRecognizer', const _GestureRecognizer()),
-      Page('手势冲突', _BothDirectionTest()),
+      ZPage('点击、双击、长按', const GestureTest()),
+      ZPage('拖动、滑动', _Drag()),
+      ZPage('单一方向拖动', _DragVertical()),
+      ZPage('缩放', const _Scale()),
+      ZPage('GestureRecognizer', const _GestureRecognizer()),
+      ZPage('手势冲突', _BothDirectionTest()),
     ]);
   }
 }

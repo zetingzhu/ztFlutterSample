@@ -85,7 +85,7 @@ class _MarkdownRouteState extends State<MarkdownRoute> {
   }
 
   viewImage(context, String url) {
-    Page(
+    ZPage(
       '查看图片',
       ScaleView(child: Image.network(url), parentScrollableAxis: null),
       showLog: false,

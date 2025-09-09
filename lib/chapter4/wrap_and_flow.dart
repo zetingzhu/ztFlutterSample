@@ -23,7 +23,7 @@ class WrapAndFlowRoute extends StatelessWidget {
         ),
         Chip(
           avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('M')),
-          label: Text('Lafayette'),
+          label: Text('Lafayette,Lafayette'),
         ),
         Chip(
           avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('H')),
@@ -42,10 +42,10 @@ class WrapAndFlowRoute extends StatelessWidget {
       delegate: TestFlowDelegate(margin: const EdgeInsets.all(10.0)),
       children: <Widget>[
         Container(width: 80.0, height: 80.0, color: Colors.red),
-        Container(width: 80.0, height: 80.0, color: Colors.green),
+        Container(width: 90.0, height: 90.0, color: Colors.green),
         Container(width: 80.0, height: 80.0, color: Colors.blue),
         Container(width: 80.0, height: 80.0, color: Colors.yellow),
-        Container(width: 80.0, height: 80.0, color: Colors.brown),
+        Container(width: 100.0, height: 60.0, color: Colors.brown),
         Container(width: 80.0, height: 80.0, color: Colors.purple),
       ],
     );

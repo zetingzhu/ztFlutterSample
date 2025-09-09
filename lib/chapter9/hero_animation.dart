@@ -8,8 +8,8 @@ class HeroAnimationRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListPage(
       children: [
-        Page('自实现Hero动画', const CustomHeroAnimation()),
-        Page('Flutter Hero动画', const HeroAnimationRouteA()),
+        ZPage('自实现Hero动画', const CustomHeroAnimation()),
+        ZPage('Flutter Hero动画', const HeroAnimationRouteA()),
       ],
     );
   }

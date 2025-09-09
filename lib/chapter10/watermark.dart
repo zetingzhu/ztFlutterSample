@@ -7,14 +7,14 @@ class WatermarkRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListPage(children: [
-      Page('测量文本宽高', wTextPainterTest(), showLog: true),
-      Page('文本水印', wTextWaterMark(context), padding: false),
-      Page('交错文本水印', wStaggerTextWaterMark(), padding: false),
-      Page('水印指定偏移', wTextWaterMarkWithOffset(), padding: false),
-      Page('UnconstrainedBox,水印偏移后会溢出', wTextWaterMarkWithUnconstrainedBox(),
+      ZPage('测量文本宽高', wTextPainterTest(), showLog: true),
+      ZPage('文本水印', wTextWaterMark(context), padding: false),
+      ZPage('交错文本水印', wStaggerTextWaterMark(), padding: false),
+      ZPage('水印指定偏移', wTextWaterMarkWithOffset(), padding: false),
+      ZPage('UnconstrainedBox,水印偏移后会溢出', wTextWaterMarkWithUnconstrainedBox(),
           padding: false),
-      Page('水印偏移-FittedBox', wTextWaterMarkWithFittedBox(), padding: false),
-      Page('水印指定-OverflowBox', wTextWaterMarkWithOverflowBox(), padding: false),
+      ZPage('水印偏移-FittedBox', wTextWaterMarkWithFittedBox(), padding: false),
+      ZPage('水印指定-OverflowBox', wTextWaterMarkWithOverflowBox(), padding: false),
     ]);
   }
 

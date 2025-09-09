@@ -8,8 +8,8 @@ class PersistentHeaderRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListPage(
       children: [
-        Page('SliverPersistentHeader示例1', wSample1(), padding: false),
-        Page(
+        ZPage('SliverPersistentHeader示例1', wSample1(), padding: false),
+        ZPage(
           'SliverPersistentHeader示例2',
           wSample2(context),
           withScaffold: false,

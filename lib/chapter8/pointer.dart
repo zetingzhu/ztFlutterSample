@@ -8,9 +8,9 @@ class PointerRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListPage(
       children: [
-        Page('显示移动偏移', const PointerMoveIndicator()),
-        Page('AbsorbPointer 忽略响应事件', const ListenerV2()),
-        Page('IgnorePointer 忽略响应事件', const ListenerV3()),
+        ZPage('显示移动偏移', const PointerMoveIndicator()),
+        ZPage('AbsorbPointer 忽略响应事件', const ListenerV2()),
+        ZPage('IgnorePointer 忽略响应事件', const ListenerV3()),
       ],
     );
   }

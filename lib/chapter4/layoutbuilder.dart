@@ -18,10 +18,12 @@ class ResponsiveColumn extends StatelessWidget {
           var _children = <Widget>[];
           for (var i = 0; i < children.length; i += 2) {
             if (i + 1 < children.length) {
-              _children.add(Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [children[i], children[i + 1]],
-              ));
+              _children.add(
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [children[i], children[i + 1]],
+                ),
+              );
             } else {
               _children.add(children[i]);
             }
@@ -33,6 +35,8 @@ class ResponsiveColumn extends StatelessWidget {
   }
 }
 
+/// 条件 A：宽度 < 200, 返回 Column（所有子元素垂直排列）。
+/// 条件 B：宽度 >= 200, 返回“双排布局”。它会把子元素每两个一组放入 Row 中，然后再放进 Column。
 class LayoutBuilderRoute extends StatelessWidget {
   const LayoutBuilderRoute({Key? key}) : super(key: key);
 
@@ -47,7 +51,19 @@ class LayoutBuilderRoute extends StatelessWidget {
       children: [
         SizedBox(width: 190, child: ResponsiveColumn(children: children)),
         ResponsiveColumn(children: children2),
-        const LayoutLogPrint(child: Text("flutter@wendux")),
+        const LayoutLogPrint(tag: "排查按钮宽度", child: Text("flutter@wendux")),
+        LayoutBuilder(builder: (context, constraints) {
+          return LayoutLogPrint(
+            tag: "排查按钮宽度",
+            child: ElevatedButton(
+              onPressed: () {
+                // 这里通过外部包裹的 LayoutBuilder 拿到真实的约束信息
+                print("排查按钮宽度点击输出: $constraints");
+              },
+              child: const Text("点我"),
+            ),
+          );
+        }),
       ],
     );
   }

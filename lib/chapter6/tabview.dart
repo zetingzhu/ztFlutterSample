@@ -9,8 +9,8 @@ class TabViewRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListPage(
       children: [
-        Page('TabBarView', const TabViewRoute1(), withScaffold: false),
-        Page(
+        ZPage('TabBarView', const TabViewRoute1(), withScaffold: false),
+        ZPage(
           'DefaultTabController',
           const TabViewRoute2(),
           withScaffold: false,

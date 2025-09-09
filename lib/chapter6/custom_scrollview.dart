@@ -7,10 +7,10 @@ class CustomScrollViewTestRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListPage(children: [
-      Page('两个ListView', buildTwoListView()),
-      Page('合并两个list', buildTwoSliverList()),
-      Page('SliverAppBar', buildSliverAppBar(), withScaffold: false),
-      Page('顶部是PageView', buildWithPageView()),
+      ZPage('两个ListView', buildTwoListView()),
+      ZPage('合并两个list', buildTwoSliverList()),
+      ZPage('SliverAppBar', buildSliverAppBar(), withScaffold: false),
+      ZPage('顶部是PageView', buildWithPageView()),
     ]);
   }
 
