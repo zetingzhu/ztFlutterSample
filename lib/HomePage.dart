@@ -117,7 +117,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ZPage("流式布局 WrapAndFlow", const WrapAndFlowRoute()),
               ZPage("层叠布局 Stack Positioned ", const StackRoute()),
               ZPage("对齐及相对定位 Align", const AlignRoute()),
-              ZPage("LayoutBuilder", const LayoutBuilderRoute(), padding: false),
+              ZPage(
+                "LayoutBuilder",
+                const LayoutBuilderRoute(),
+                padding: false,
+              ),
               ZPage(
                 "AfterLayout 它允许你在组件布局完成并渲染出第一帧后，安全地获取子组件的实际尺寸（Size）或位置（Offset），而不会触发布局阶段的重绘冲突",
                 const AfterLayoutRoute(),
@@ -165,7 +169,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 const FixedExtentList(),
                 padding: false,
               ),
-              ZPage("ListView 无限加载列表", const InfiniteListView(), padding: false),
+              ZPage(
+                "ListView 无限加载列表",
+                const InfiniteListView(),
+                padding: false,
+              ),
               ZPage("ListViewV4 添加表头", const ListViewV4(), padding: false),
               ZPage(
                 "ScrollControllerV1 监听滚动（判断当前位置是否超过1000像素，如果超过则在屏幕右下角显示一个“返回顶部”的按钮）",
@@ -173,7 +181,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 withScaffold: false,
                 padding: false,
               ),
-              ZPage("滚动监听", const ScrollNotificationTestRoute(), padding: false),
+              ZPage(
+                "滚动监听",
+                const ScrollNotificationTestRoute(),
+                padding: false,
+              ),
               ZPage("可滚动组件的通用配置", const ScrollViewConfiguration()),
               ZPage(
                 "AnimatedList 可添加删除的列表",
@@ -238,7 +250,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 const NestedScrollViewRoute(),
                 padding: false,
               ),
-              ZPage("PullRefresh", const PullRefreshTestRoute(), padding: false),
+              ZPage(
+                "PullRefresh",
+                const PullRefreshTestRoute(),
+                padding: false,
+              ),
               ZPage(
                 "CustomPullRefresh",
                 const PullRefreshBoxRoute(),
@@ -254,7 +270,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ZPage("导航返回拦截 2", const BackPopScope(), withScaffold: false),
               ZPage("数据共享(inheritedWidget)", const InheritedWidgetTestRoute()),
               ZPage("跨组件状态管理(Provider)", const ProviderRoute()),
-              ZPage("颜色和MaterialColor", const ColorRoute(), withScaffold: false),
+              ZPage(
+                "颜色和MaterialColor",
+                const ColorRoute(),
+                withScaffold: false,
+              ),
               ZPage("主题-Theme", const ThemeTestRoute(), withScaffold: false),
               ZPage(
                 "ValueListenableBuilder",
@@ -391,12 +411,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 withScaffold: false,
               ),
               ZPage("订阅按钮状态，失败恢复状态", const SubscribeBtn(), withScaffold: false),
-              Page("国际化切换", LanguageSetting(), withScaffold: false),
-              Page("调用 Android 原生 1", ShowAndroidUi(), withScaffold: false),
-              Page("调用 Android 原生 2", BatteryRoute(), withScaffold: false),
-              Page("调用 Android 原生 4", ShowAndroidV4(), withScaffold: false),
-              Page("调用 Android 原生 3", SendMessageState(), withScaffold: false),
-              Page("切换主题", ThemeRoute(), withScaffold: false),
             ]),
           ),
         ],
