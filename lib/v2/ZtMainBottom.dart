@@ -136,16 +136,6 @@ class _HomeState extends State<ZMyApp> with SingleTickerProviderStateMixin {
             "/setting": (context) => const TPage5(),
             "/text": (context) => const TextRoute(),
           },
-
-          // onGenerateRoute: (RouteSettings settings) {
-          //   return MaterialPageRoute(
-          //     builder: (context) {
-          //       String routeName = settings.name;
-          //       // 如果访问的路由页需要登录，但当前未登录，则直接返回登录页路由，
-          //       // 引导用户登录；其他情况则正常打开路由。
-          //     },
-          //   );
-          // },
         );
       },
     );
