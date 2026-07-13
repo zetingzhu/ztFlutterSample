@@ -35,7 +35,7 @@ class _PointerMoveIndicatorState extends State<PointerMoveIndicator> {
         width: 300.0,
         height: 150.0,
         child: Text(
-          '相对于全局坐标的偏移:${_event?.position} \n 相对于本身布局坐标的偏移:${_event!.localPosition}',
+          '相对于全局坐标的偏移:${_event?.position} \n 相对于本身布局坐标的偏移:${_event?.localPosition}',
           style: const TextStyle(color: Colors.white),
         ),
       ),

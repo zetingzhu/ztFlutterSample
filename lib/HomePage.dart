@@ -29,6 +29,7 @@ import 'package:zt_flutter_sample_v2/v5/ThemeRoute.dart';
 import 'package:zt_flutter_sample_v2/v6/CircleListItem.dart';
 import 'package:zt_flutter_sample_v2/v6/CustomScrollViewV1.dart';
 import 'package:zt_flutter_sample_v2/v6/CustomScrollViewV2.dart';
+import 'package:zt_flutter_sample_v2/v6/SpeedMyTest.dart';
 import 'package:zt_flutter_sample_v2/v6/SubscribeBtn.dart';
 import 'package:zt_flutter_sample_v2/v5/ThemeRoute.dart';
 import 'chapter11/weather_example.dart';
@@ -36,6 +37,7 @@ import 'chapter4/FlexLayoutTestRoute.dart';
 import 'chapter4/colum.dart';
 import 'chapter6/gridviewV3.dart';
 import 'chapter9/scale_animation_listener.dart';
+import 'container/SafeAreaSample.dart';
 import 'routes.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -133,6 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: const Text("5.容器类组件"),
             children: _generateItem(context, [
               ZPage("Padding： 专门给子组件四周“留白”，控制间距。", const PaddingTestRoute()),
+              ZPage("SafeArea 容器", const SafeAreaSample(), withScaffold: false),
               ZPage(
                 "DecoratedBox： 用于给子组件绘制背景、边框、阴影等装饰。",
                 const DecoratedBoxRoute(),
@@ -411,6 +414,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 withScaffold: false,
               ),
               ZPage("订阅按钮状态，失败恢复状态", const SubscribeBtn(), withScaffold: false),
+              ZPage("手动布局的测试案例", const SpeedMyTest(), withScaffold: false),
             ]),
           ),
         ],
