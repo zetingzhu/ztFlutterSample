@@ -77,6 +77,9 @@ dependencies:
   # https://pub-web.flutter-io.cn/packages/pigeon flutter 和原生交互
   pigeon: ^26.0.1
 
+  #  音频播放 https://pub.dev/packages/audioplayers
+  audioplayers: ^6.7.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -105,6 +108,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - imgs/ # 自动包含该目录所有文件
+    - assets/audio/
     - assets/stackoverflow_light.css
     - assets/stackoverflow_dark.css
     - assets/neat.js

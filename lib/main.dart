@@ -28,7 +28,7 @@ void main() async {
         ChangeNotifierProvider<LocaleProvider>.value(value: localeProvider),
         ChangeNotifierProvider<ThemeProvider>.value(value: themeProvider),
       ],
-      child: const ZMyApp(),
+      child: const ZtMainBottom(),
     ),
   );
 }

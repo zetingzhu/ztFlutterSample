@@ -12,6 +12,7 @@ import 'dart:developer';
 import '../l10n/LocaleProvider.dart';
 import '../l10n/app_localizations.dart';
 import '../v5/ThemeProvider.dart';
+import 'ChildrenStoryPage.dart';
 import 'TPage1.dart';
 import 'TPage2.dart';
 import 'HomeRoom.dart';
@@ -31,15 +32,16 @@ enum ScreenSelected {
 }
 
 // 应用主页组件
-class ZMyApp extends StatefulWidget {
-  const ZMyApp({super.key});
+class ZtMainBottom extends StatefulWidget {
+  const ZtMainBottom({super.key});
 
   @override
-  State<ZMyApp> createState() => _HomeState();
+  State<ZtMainBottom> createState() => _HomeState();
 }
 
 // Home组件的状态类
-class _HomeState extends State<ZMyApp> with SingleTickerProviderStateMixin {
+class _HomeState extends State<ZtMainBottom>
+    with SingleTickerProviderStateMixin {
   // 当前选中的屏幕索引
   int screenIndex = ScreenSelected.main.value;
 
@@ -56,7 +58,7 @@ class _HomeState extends State<ZMyApp> with SingleTickerProviderStateMixin {
         ScreenSelected.main => const MyHomePage(),
         ScreenSelected.chat => const TPage2(),
         ScreenSelected.rooms => const HomeRoom(),
-        ScreenSelected.meet => const TPage4(),
+        ScreenSelected.meet => const ChildrenStoryPage(),
         ScreenSelected.setting => const TPage5(),
       };
 
